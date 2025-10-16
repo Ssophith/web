@@ -22,7 +22,6 @@ body {
 .card {
   padding: 2rem;
   background-color: white;
-  /* padding: 16px; */
 }
 
 .flex {
@@ -30,32 +29,9 @@ body {
   gap: 1rem;
   font-size: 1ch;
 }
-/* === FLEX LAYOUT === */
-.flex-footer {
-  display: flex;
-  justify-content: space-between; /* хоёр тийш байрлуулах */
-  align-items: center;
-  background-color: #424242;
-  color: white;
-  padding: 15px 30px;
-}
 
 .flex-navbar {
   display: flex;
   justify-content: space-around;
   background-color: grey;
-}
-
-.footer-links {
-  display: flex;
-  gap: 15px;
-}
-
-.footer-links a {
-  color: white;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
 }
