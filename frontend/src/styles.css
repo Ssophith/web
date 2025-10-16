@@ -6,23 +6,34 @@ body {
   background: #fafafa;
 }
 
+.search {
+  margin: 2rem;
+  width: 50ch;
+  background-color: aqua;
+}
 /* === GRID LAYOUT === */
 .grid-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive */
+  grid-template-columns: repeat(3, minmax(250px, 1fr)); /* responsive */
   gap: 20px;
-  padding: 20px;
+  justify-items: center;
 }
 
 .card {
+  padding: 2rem;
   background-color: white;
-  padding: 16px;
+  /* padding: 16px; */
 }
 
+.flex {
+  display: flex;
+  gap: 1rem;
+  font-size: 1ch;
+}
 /* === FLEX LAYOUT === */
 .flex-footer {
   display: flex;
-  justify-content: space-between;  /* хоёр тийш байрлуулах */
+  justify-content: space-between; /* хоёр тийш байрлуулах */
   align-items: center;
   background-color: #424242;
   color: white;
@@ -30,9 +41,9 @@ body {
 }
 
 .flex-navbar {
-    display: flex;
-    justify-content: space-around;
-    margin: 15px;
+  display: flex;
+  justify-content: space-around;
+  background-color: grey;
 }
 
 .footer-links {
