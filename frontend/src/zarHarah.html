@@ -5,6 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./styles.css" />
+    <style>
+      body {
+        font-family: var(--font1);
+        margin: 0;
+        padding: 0;
+        background: var(--color4);
+      }
+
+      .search-container {
+        margin: 2rem 0 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 3rem;
+        border: var(--bordersize1) solid var(--color2);
+        border-radius: var(--border_radius1);
+        background-color: var(--color4);
+
+        input {
+          padding-left: 2ch;
+          border: none;
+          width: 90%;
+          border-radius: var(--border_radius1);
+        }
+
+        .toggle-container {
+          width: 10%;
+          height: 100%;
+          display: inline-block;
+          border-radius: var(--border_radius1);
+          cursor: pointer;
+          border: none;
+
+          .toggle-input {
+            display: none;
+          }
+
+          .toggle-btn {
+            height: 100%;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              transition: transform 0.3s ease;
+            }
+          }
+
+          .toggle-input:checked + .toggle-btn svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(20rem, 1fr));
+        gap: 1rem;
+        justify-items: center;
+      }
+
+      .card {
+        padding: 2rem;
+        background-color: var(--color4);
+        border: var(--bordersize1) solid var(--color2);
+        border-radius: var(--border_radius1);
+
+        h2 {
+          font-size: var(--fontsize1);
+        }
+
+        .flex-nav {
+          display: flex;
+          gap: 1rem;
+          font-size: var(--fontsize3);
+        }
+      }
+
+      .info {
+        padding: 1rem;
+        font-size: var(--fontsize2);
+        background-color: var(--color3);
+        border-radius: var(--border_radius1);
+      }
+
+      .flex {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .flex-navbar {
+        display: flex;
+        justify-content: space-around;
+        background-color: grey;
+      }
+
+      @media (max-width: 900px) {
+        .grid-layout {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .grid-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -16,19 +132,61 @@
       </nav>
     </header>
     <main>
-      <div class="search">
-        <input type="text" />
-        <button>Шүүлтүүр</button>
+      <div class="search-container">
+        <div class="search">
+          <input
+            type="text"
+            placeholder="Хайх утга..."
+            name="search"
+            aria-label="Хайх"
+          />
+          <div class="toggle-container">
+            <input type="checkbox" id="arrowToggle" class="toggle-input" />
+            <label for="arrowToggle" class="toggle-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="none"
+                  stroke="#000"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="4"
+                  d="M36 18L24 30L12 18"
+                />
+              </svg>
+            </label>
+          </div>
+        </div>
       </div>
       <div class="grid-layout">
         <article class="card">
-          <div class="flex">
+          <div class="flex-nav">
             <div>
-              <img
-                src="../images/human.jpg"
-                alt="profile"
-                style="width: 3rem; height: 3rem"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
+                  />
+                  <path
+                    d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
+                  />
+                </g>
+              </svg>
             </div>
             <div>
               <div class="flex">
@@ -45,7 +203,7 @@
               <h2>Армотур зангидах</h2>
             </div>
           </div>
-          <div>
+          <div class="info">
             <div>
               <div>
                 <p>2025.10.02</p>
@@ -62,13 +220,29 @@
           </div>
         </article>
         <article class="card">
-          <div class="flex">
+          <div class="flex-nav">
             <div>
-              <img
-                src="../images/human.jpg"
-                alt="profile"
-                style="width: 3rem; height: 3rem"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
+                  />
+                  <path
+                    d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
+                  />
+                </g>
+              </svg>
             </div>
             <div>
               <div class="flex">
@@ -85,13 +259,13 @@
               <h2>Армотур зангидах</h2>
             </div>
           </div>
-          <div>
+          <div class="info">
             <div>
               <div>
                 <p>2025.10.02</p>
                 <p>9:00 - 18:00</p>
               </div>
-              <div>
+              <div class="flex">
                 <p>mapicon</p>
                 <p>Сүхбаатар дүүрэг</p>
               </div>
@@ -102,13 +276,29 @@
           </div>
         </article>
         <article class="card">
-          <div class="flex">
+          <div class="flex-nav">
             <div>
-              <img
-                src="../images/human.jpg"
-                alt="profile"
-                style="width: 3rem; height: 3rem"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
+                  />
+                  <path
+                    d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
+                  />
+                </g>
+              </svg>
             </div>
             <div>
               <div class="flex">
@@ -125,13 +315,13 @@
               <h2>Армотур зангидах</h2>
             </div>
           </div>
-          <div>
+          <div class="info">
             <div>
               <div>
                 <p>2025.10.02</p>
                 <p>9:00 - 18:00</p>
               </div>
-              <div>
+              <div class="flex">
                 <p>mapicon</p>
                 <p>Сүхбаатар дүүрэг</p>
               </div>
@@ -142,13 +332,29 @@
           </div>
         </article>
         <article class="card">
-          <div class="flex">
+          <div class="flex-nav">
             <div>
-              <img
-                src="../images/human.jpg"
-                alt="profile"
-                style="width: 3rem; height: 3rem"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
+                  />
+                  <path
+                    d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
+                  />
+                </g>
+              </svg>
             </div>
             <div>
               <div class="flex">
@@ -165,13 +371,13 @@
               <h2>Армотур зангидах</h2>
             </div>
           </div>
-          <div>
+          <div class="info">
             <div>
               <div>
                 <p>2025.10.02</p>
                 <p>9:00 - 18:00</p>
               </div>
-              <div>
+              <div class="flex">
                 <p>mapicon</p>
                 <p>Сүхбаатар дүүрэг</p>
               </div>
@@ -182,13 +388,29 @@
           </div>
         </article>
         <article class="card">
-          <div class="flex">
+          <div class="flex-nav">
             <div>
-              <img
-                src="../images/human.jpg"
-                alt="profile"
-                style="width: 3rem; height: 3rem"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
+                  />
+                  <path
+                    d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
+                  />
+                </g>
+              </svg>
             </div>
             <div>
               <div class="flex">
@@ -205,13 +427,13 @@
               <h2>Армотур зангидах</h2>
             </div>
           </div>
-          <div>
+          <div class="info">
             <div>
               <div>
                 <p>2025.10.02</p>
                 <p>9:00 - 18:00</p>
               </div>
-              <div>
+              <div class="flex">
                 <p>mapicon</p>
                 <p>Сүхбаатар дүүрэг</p>
               </div>
@@ -222,13 +444,29 @@
           </div>
         </article>
         <article class="card">
-          <div class="flex">
+          <div class="flex-nav">
             <div>
-              <img
-                src="../images/human.jpg"
-                alt="profile"
-                style="width: 3rem; height: 3rem"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
+                  />
+                  <path
+                    d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
+                  />
+                </g>
+              </svg>
             </div>
             <div>
               <div class="flex">
@@ -245,13 +483,13 @@
               <h2>Армотур зангидах</h2>
             </div>
           </div>
-          <div>
+          <div class="info">
             <div>
               <div>
                 <p>2025.10.02</p>
                 <p>9:00 - 18:00</p>
               </div>
-              <div>
+              <div class="flex">
                 <p>mapicon</p>
                 <p>Сүхбаатар дүүрэг</p>
               </div>

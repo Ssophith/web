@@ -1,37 +1,19 @@
 /* === ЕРӨНХИЙ === */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #fafafa;
+:root{
+  --color1: hsl(278, 100%, 25%);
+  --color2: hsl(278, 100%, 50%);
+  --color3: hsl(278, 100%, 75%);
+  --color4: hsl(0, 0%, 100%);
+  --color5: hsl(0, 0%, 50%);
+  --color6: hsl(0, 0%, 0%);
+
+  --fontsize1: 1.5rem;
+  --fontsize2: 1rem;
+  --fontsize3: 0.5rem;
+
+  --font1: Arial, sans-serif;
+
+  --border_radius1: 1.5rem;
+  --bordersize1: 0.1rem;
 }
 
-.search {
-  margin: 2rem;
-  width: 50ch;
-  background-color: aqua;
-}
-/* === GRID LAYOUT === */
-.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr)); /* responsive */
-  gap: 20px;
-  justify-items: center;
-}
-
-.card {
-  padding: 2rem;
-  background-color: white;
-}
-
-.flex {
-  display: flex;
-  gap: 1rem;
-  font-size: 1ch;
-}
-
-.flex-navbar {
-  display: flex;
-  justify-content: space-around;
-  background-color: grey;
-}
