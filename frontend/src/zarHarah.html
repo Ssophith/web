@@ -3,14 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Zar harah</title>
     <link rel="stylesheet" href="./styles.css" />
     <style>
-      body {
+      .container {
+        display: grid;
         font-family: var(--font1);
         margin: 0;
         padding: 0;
-        background: var(--color4);
+
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+
+        grid-template-rows: 8vh 1fr 10vh;
+      }
+
+      .header {
+        grid-area: header;
+        background-color: var(--color2);
+        color: var(--color4)
+      }
+
+      .main {
+        grid-area: main;
+        background-color: var(--color4);
+      }
+
+      .footer {
+        grid-area: footer;
+        background-color: var(--color2);
+        margin-top: 2rem;
       }
 
       .search-container {
@@ -75,6 +99,8 @@
       }
 
       .card {
+        width: 25vw;
+        height: auto;
         padding: 2rem;
         background-color: var(--color4);
         border: var(--bordersize1) solid var(--color2);
@@ -82,6 +108,7 @@
 
         h2 {
           font-size: var(--fontsize1);
+          text-align: center;
         }
 
         .flex-nav {
@@ -92,6 +119,8 @@
       }
 
       .info {
+        margin: 0;
+        height: 50%;
         padding: 1rem;
         font-size: var(--fontsize2);
         background-color: var(--color3);
@@ -100,13 +129,12 @@
 
       .flex {
         display: flex;
-        gap: 1rem;
+        justify-content: space-between;
       }
 
       .flex-navbar {
         display: flex;
         justify-content: space-around;
-        background-color: grey;
       }
 
       @media (max-width: 900px) {
@@ -122,8 +150,8 @@
       }
     </style>
   </head>
-  <body>
-    <header>
+  <body class="container">
+    <header class="header">
       <nav class="flex-navbar">
         <p>Зар</p>
         <p>Миний зар</p>
@@ -131,7 +159,7 @@
         <p>Би</p>
       </nav>
     </header>
-    <main>
+    <main class="main">
       <div class="search-container">
         <div class="search">
           <input
@@ -194,7 +222,7 @@
                 <p>Хувь хүн</p>
               </div>
               <div>
-                <p>Нийтэлсэн хугацаа: 2025.10.01</p>
+                <p>2025.10.01</p>
               </div>
             </div>
           </div>
@@ -205,15 +233,15 @@
           </div>
           <div class="info">
             <div>
-              <div>
-                <p>2025.10.02</p>
+              <div class="flex">
+                <p>10.02</p>
                 <p>9:00 - 18:00</p>
               </div>
               <div class="flex">
-                <p>mapicon</p>
+                <div class="flex">
+                <p></p>
                 <p>Сүхбаатар дүүрэг</p>
-              </div>
-              <div>
+                </div>
                 <p>80000₮</p>
               </div>
             </div>
@@ -501,5 +529,8 @@
         </article>
       </div>
     </main>
+    <footer class="footer">
+
+    </footer>
   </body>
 </html>
