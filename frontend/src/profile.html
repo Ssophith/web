@@ -3,10 +3,157 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="./main.js"></script>
+    <style>
+      .container {
+        display: grid;
+        font-family: var(--font1);
+        margin: 0;
+        padding: 0;
+
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+
+        grid-template-rows: 8vh 1fr 10vh;
+      }
+
+      .header {
+        grid-area: header;
+        background-color: var(--color2);
+        color: var(--color4);
+      }
+
+      .main {
+        grid-area: main;
+        background-color: var(--color4);
+      }
+
+      .footer {
+        grid-area: footer;
+        background-color: var(--color2);
+        margin-top: 2rem;
+      }
+
+      .search-container {
+        margin: 2rem 0 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 3rem;
+        border: var(--bordersize1) solid var(--color2);
+        border-radius: var(--border_radius1);
+        background-color: var(--color4);
+
+        input {
+          padding-left: 2ch;
+          border: none;
+          width: 90%;
+          border-radius: var(--border_radius1);
+        }
+
+        .toggle-container {
+          width: 10%;
+          height: 100%;
+          display: inline-block;
+          border-radius: var(--border_radius1);
+          cursor: pointer;
+          border: none;
+
+          .toggle-input {
+            display: none;
+          }
+
+          .toggle-btn {
+            height: 100%;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              transition: transform 0.3s ease;
+            }
+          }
+
+          .toggle-input:checked + .toggle-btn svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(21rem, 1fr));
+        gap: 1rem;
+        justify-items: center;
+      }
+
+      .card {
+        width: 15vw;
+        height: auto;
+        padding: 2rem;
+        background-color: var(--color4);
+        border: var(--bordersize1) solid var(--color2);
+        border-radius: var(--border_radius1);
+
+        h2 {
+          font-size: var(--fontsize1);
+          text-align: center;
+        }
+
+        .flex-nav {
+          display: flex;
+          gap: 1rem;
+          font-size: var(--fontsize3);
+        }
+      }
+
+      .info {
+        margin: 0;
+        height: auto;
+        padding: 1rem;
+        font-size: var(--fontsize2);
+        background-color: var(--color3);
+        border-radius: var(--border_radius1);
+      }
+
+      .flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .flex-navbar {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      @media (max-width: 900px) {
+        .grid-layout {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .grid-layout {
+          grid-template-columns: 2fr;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <header>
+  <body class = "container">
+    <header class = "header">
       <nav class="flex-navbar">
         <p>Зар</p>
         <p>Миний зар</p>
@@ -14,10 +161,12 @@
         <p>Би</p>
       </nav>
     </header>
-    <main>
-      <article>
-        <div></div>
-      </article>
-    </main>
+    
+    <div class = "search-container">
+      <job-list id="offers"></job-list>
+    
+    </div>
+    
+
   </body>
 </html>
