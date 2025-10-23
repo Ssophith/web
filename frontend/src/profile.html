@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="./main.js"></script>
-    <style>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Зар харах</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
       .container {
         display: grid;
         font-family: var(--font1);
@@ -151,22 +150,16 @@
         }
       }
     </style>
-  </head>
-  <body class = "container">
-    <header class = "header">
-      <nav class="flex-navbar">
-        <p>Зар</p>
-        <p>Миний зар</p>
-        <p>Миний ажил</p>
-        <p>Би</p>
-      </nav>
-    </header>
-    
-    <div class = "search-container">
-      <job-list id="offers"></job-list>
-    
-    </div>
-    
+</head>
+<body>
+  <header>
+    <h1>Зарын жагсаалт</h1>
+  </header>
 
-  </body>
+  <!-- энд job-list байх ёстой -->
+  <job-list id="offers"></job-list>
+
+  <!-- main.js хамгийн сүүлд байх ёстой -->
+  <script src="./main.js"></script>
+</body>
 </html>

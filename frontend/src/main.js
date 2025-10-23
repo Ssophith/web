@@ -52,7 +52,7 @@ class JobCard extends HTMLElement {
 }
 
 // Custom элемент бүртгэх
-window.customElements.define('card', JobCard);
+window.customElements.define('job-card', JobCard);
 
 class JobList extends HTMLElement {
     connectedCallback(){
@@ -66,7 +66,7 @@ class JobList extends HTMLElement {
         const row = this.querySelector('.grid-layout');
         row.innerHTML = '';
         list.forEach(item => {
-            const card = document.createElement('card');
+            const card = document.createElement('job-card');
             card.setAttribute('name', item.name);
             card.setAttribute('type', item.type);
             card.setAttribute('date', item.date);
