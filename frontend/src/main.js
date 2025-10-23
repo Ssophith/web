@@ -64,19 +64,13 @@ class JobList extends HTMLElement {
 
     set items(list){
         const row = this.querySelector('.grid-layout');
-        row.innerHTML = '';
+        let cont="";
         list.forEach(item => {
-            const card = document.createElement('job-card');
-            card.setAttribute('name', item.name);
-            card.setAttribute('type', item.type);
-            card.setAttribute('date', item.date);
-            card.setAttribute('title', item.title);
-            card.setAttribute('workDate', item.workDate);
-            card.setAttribute('workTime', item.workTime);
-            card.setAttribute('location', item.location);
-            card.setAttribute('salary', item.salary);
-            row.appendChild(card);
+            cont+=`<job-card name="${item.name}" type="${item.type}">`;
         });
+        console.log(cont);
+        row.innerHTML = cont;
+
     }
 }
 customElements.define('job-list', JobList);
