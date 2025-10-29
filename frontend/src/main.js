@@ -51,7 +51,6 @@ class JobCard extends HTMLElement {
   }
 }
 
-// Custom элемент бүртгэх
 window.customElements.define('job-card', JobCard);
 
 class JobList extends HTMLElement {
