@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minii zar</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .container {
+        display: grid;
+        font-family: var(--font1);
+        margin: 0;
+        padding: 0;
+
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+
+        grid-template-rows: 8vh 1fr 10vh;
+      }
+
+      .header {
+        grid-area: header;
+        background-color: var(--color2);
+      }
+
+      .main {
+        grid-area: main;
+        background-color: var(--color4);
+      }
+
+      .footer {
+        grid-area: footer;
+        background-color: var(--color6);
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+<body class="container">
+    <header class="header">
+      <nav class="flex-navbar">
+        <p>Зар</p>
+        <p>Миний зар</p>
+        <p>Миний ажил</p>
+        <p>Би</p>
+      </nav>
+    </header>
+    <main class="main">
+ 
+    </main>
+    <footer class="footer">
+
+    </footer>
+  </body>
+</html>
+
