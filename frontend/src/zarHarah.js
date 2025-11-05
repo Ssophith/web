@@ -65,7 +65,19 @@ class JobList extends HTMLElement {
         const row = this.querySelector('.grid-layout');
         let cont="";
         list.forEach(item => {
-            cont+=`<job-card name="${item.name}" type="${item.type}">`;
+            cont+=
+            `<job-card 
+              name="${item.name}" 
+              type="${item.type}"
+              date="${item.date}"
+              title="${item.title}"
+              workDate="${item.workDate}"
+              workTime="${item.workTime}"
+              location="${item.location}"
+              salary="${item.salary}"
+            >
+            </job-card>
+            `;
         });
         console.log(cont);
         row.innerHTML = cont;
@@ -76,6 +88,7 @@ customElements.define('job-list', JobList);
 
 document.addEventListener(`DOMContentLoaded`, () => {
     const offers = [
+        {name: 'Солонго', type: 'Хувь хүн', date: '2025-10-22', title: 'Газар ухна', workDate: '2025-11-02', workTime: '9:00-18:00', location: 'Сүхбаатар дүүрэг', salary: '80000₮'},
         {name: 'Солонго', type: 'Хувь хүн', date: '2025-10-22', title: 'Газар ухна', workDate: '2025-11-02', workTime: '9:00-18:00', location: 'Сүхбаатар дүүрэг', salary: '80000₮'},
         {name: 'Солонго', type: 'Хувь хүн', date: '2025-10-22', title: 'Газар ухна', workDate: '2025-11-02', workTime: '9:00-18:00', location: 'Сүхбаатар дүүрэг', salary: '80000₮'},
         {name: 'Солонго', type: 'Хувь хүн', date: '2025-10-22', title: 'Газар ухна', workDate: '2025-11-02', workTime: '9:00-18:00', location: 'Сүхбаатар дүүрэг', salary: '80000₮'},
