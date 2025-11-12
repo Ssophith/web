@@ -10,85 +10,133 @@
         display: grid;
         font-family: var(--font1);
         margin: 0;
-        padding: 0;
+        justify-content: center;
 
         grid-template-areas:
           "header header"
           "main sidebar1"
           "main sidebar2";
 
-        grid-template-columns: 2fr 2fr;
+        grid-template-rows: 8vh 40vh 40vh;
+        grid-template-columns: 45% 45%;
         gap: 1rem;
       }
 
       .header {
+        margin-top: 0.3rem;
         grid-area: header;
-        background-color: var(--color4);
         color: var(--color6);
-      }
-
-      .main {
-        grid-area: main;
-        background-color: blue;
-        border: var(--bordersize1) solid var(--color2);
-        border-radius: var(--border_radius1);
-      }
-      .sidebar1 {
-        grid-area: sidebar1;
-        height: 1fr;
-        background-color: beige;
-        border: var(--bordersize1) solid var(--color2);
-        border-radius: var(--border_radius1);
-      }
-      .sidebar2 {
-        grid-area: sidebar2;
-        height: 1fr;
-        background-color: aqua;
-        border: var(--bordersize1) solid var(--color2);
-        border-radius: var(--border_radius1);
-      }
-
-      .flex-navbar {
-        height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0rem 2px 7px var(--color5);
 
-        .button {
-          margin-right: 0.5rem;
+        .flex-profl {
+          display: flex;
+          gap: 1rem;
+          font-size: var(--fontsize3);
+        }
+
+        a {
           text-decoration: none;
           background-color: var(--color4);
           border: none;
           color: var(--color6);
         }
 
-        .button:hover {
+        a:hover {
           color: var(--color1);
         }
       }
+
+      .main {
+        grid-area: main;
+      }
+      .sidebar1 {
+        grid-area: sidebar1;
+        margin: 0 0 0 1rem;
+      }
+      .sidebar2 {
+        grid-area: sidebar2;
+        margin: 0 0 0 1rem;
+      }
+
+      h1 {
+        font-size: var(--font1);
+      }
+      .maindiv {
+        height: 95%;
+        border: var(--bordersize1) solid var(--color2);
+        border-radius: var(--border_radius1);
+        
+      }
+      .sectiondiv {
+        height: 90%;
+        border: var(--bordersize1) solid var(--color2);
+        border-radius: var(--border_radius1);
+      }
     </style>
   </head>
-  <body>
+  <body class="container">
     <header class="header">
-      <nav class="flex-navbar">
-          <a href="./login.html" class="button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
+      <div class="flex-profl">
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            viewBox="0 0 24 24"
+          >
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
             >
               <path
-                fill="currentColor"
-                d="M6.225 4.811a1 1 0 0 0-1.414 1.414L10.586 12L4.81 17.775a1 1 0 1 0 1.414 1.414L12 13.414l5.775 5.775a1 1 0 0 0 1.414-1.414L13.414 12l5.775-5.775a1 1 0 0 0-1.414-1.414L12 10.586L6.225 4.81Z"
+                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
               />
-            </svg>
-          </a>
-      </nav>
+              <path
+                d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
+              />
+            </g>
+          </svg>
+        </div>
+        <div>
+          <div class="flex">
+            <p>${this.getAttribute(`name`) || ""}</p>
+            <p>${this.getAttribute(`type`) || ""}</p>
+          </div>
+          <div>
+            <p>Нийтэлсэн хугацаа: ${this.getAttribute(`date`) || ""}</p>
+          </div>
+        </div>
+      </div>
+      <a href="./zarHarah.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M6.225 4.811a1 1 0 0 0-1.414 1.414L10.586 12L4.81 17.775a1 1 0 1 0 1.414 1.414L12 13.414l5.775 5.775a1 1 0 0 0 1.414-1.414L13.414 12l5.775-5.775a1 1 0 0 0-1.414-1.414L12 10.586L6.225 4.81Z"
+          />
+        </svg>
+      </a>
     </header>
-    <section class="main">098u76tr5dtfyguhijo</section>
-    <section class="sidebar1">111111111111111</section>
-    <section class="sidebar2">22222222222222</section>
+    <section class="main">
+      <h1>Үндсэн мэдээлэл</h1>
+      <div class="maindiv"></div>
+    </section>
+    <section class="sidebar1">
+      <h1>Шаардлага</h1>
+      <div class="sectiondiv"></div>
+    </section>
+    <section class="sidebar2">
+      <h1>Нэмэлт мэдээлэл</h1>
+      <div class="sectiondiv"></div>
+    </section>
   </body>
 </html>
