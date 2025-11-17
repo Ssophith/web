@@ -1,1 +1,105 @@
-dsss
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зар Нэмэх - Part-Time Ажилтан Авах</title>
+    <link rel="stylesheet" href="zarNemeh.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ажилтан Авах Зар Нэмэх</h1>
+        <form action="#" method="post">
+            <div class="form-grid">
+                <div class="form-item">
+                    <label for="job-name">Ажлын нэр</label>
+                    <input type="text" id="job-name" name="job-name" required>
+                </div>
+
+                <div class="form-item">
+                    <label for="salary">Цалин</label>
+                    <input type="text" id="salary" name="salary" placeholder="Жишээ нь: 50000 төгрөг/цаг" required>
+                </div>
+
+                <div class="form-item">
+                    <label for="job-type">Ажлын төрөл</label>
+                    <select id="job-type" name="job-type" required>
+                        <option value="">Сонгоно уу</option>
+                        <option value="part-time">Part-Time</option>
+                        <option value="full-time">Full-Time</option>
+                        <option value="internship">Internship</option>
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label for="location">Байршил</label>
+                    <input type="text" id="location" name="location" placeholder="Жишээ: Улаанбаатар, Сүхбаатар дүүрэг" required>
+                </div>
+
+                <div class="form-item">
+                    <label for="start-date">Ажил эхлэх өдөр</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                </div>
+
+                <div class="form-item">
+                    <label for="work-hours">Ажлын цаг</label>
+                    <input type="text" id="work-hours" name="work-hours" placeholder="Жишээ: 09:00-17:00, 8 цаг" required>
+                </div>
+
+                <div class="form-item">
+                    <label for="phone">Утасны дугаар</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Жишээ: 99999999" required>
+                </div>
+
+                <div class="form-item">
+                    <label for="num-employees">Ажилд авах хүний тоо</label>
+                    <input type="number" id="num-employees" name="num-employees" min="1" required>
+                </div>
+
+                <div class="form-item full-width">
+                    <label for="requirements">Шаардлага</label>
+                    <textarea id="requirements" name="requirements" placeholder="Ажилд шаардлагатай ур чадвар, туршлага гэх мэт бичнэ үү"></textarea>
+                </div>
+
+                <div class="form-item full-width checkbox-group">
+    <label>Нэмэлт хэсэг (давуу тал):</label>
+
+    <div class="checkbox-option">
+        <label>
+            <input type="checkbox" id="meal" name="benefits[]" value="meal" onchange="toggleInput('meal-details', this)">
+            Өдрийн хоол
+        </label>
+        <div id="meal-details" class="hidden extra-input">
+            <input type="text" name="meal-info" placeholder="Жишээ: 3 удаа хоол / өдөр" />
+        </div>
+    </div>
+
+    <div class="checkbox-option">
+        <label>
+            <input type="checkbox" id="transport" name="benefits[]" value="transport" onchange="toggleInput('transport-details', this)">
+            Унааны мөнгө
+        </label>
+        <div id="transport-details" class="hidden extra-input">
+            <input type="text" name="transport-info" placeholder="Жишээ: 3000₮ / өдөр" />
+        </div>
+    </div>
+</div>
+
+
+                <div class="form-item full-width">
+                    <label for="additional-notes">Нэмэлт тайлбарууд</label>
+                    <textarea id="additional-notes" name="additional-notes" placeholder="Бусад нэмэлт мэдээлэл бичнэ үү"></textarea>
+                </div>
+            </div>
+
+            <button type="submit">Зар Нийтлэх</button>
+        </form>
+    </div>
+<script>
+function toggleInput(id, checkbox) {
+    const inputDiv = document.getElementById(id);
+    inputDiv.classList.toggle('hidden', !checkbox.checked);
+}
+</script>
+</body>
+</html>
