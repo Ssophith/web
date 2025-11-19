@@ -1,4 +1,4 @@
-/* Ерөнхий тохиргоо */
+
 body {
     font-family: 'Poppins', Arial, sans-serif;
     background: linear-gradient(135deg, #6dd5fa, #ffffff);
@@ -10,7 +10,6 @@ body {
     min-height: 100vh;
 }
 
-/* Контейнер */
 .container {
     background-color: #fff;
     padding: 40px;
@@ -20,7 +19,6 @@ body {
     width: 100%;
 }
 
-/* Гарчиг */
 h1 {
     text-align: center;
     color: #333;
@@ -29,14 +27,12 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Grid бүтэц */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px 30px; /* Илүү зайтай болгосон */
 }
 
-/* Форм элементүүд */
 .form-item {
     display: flex;
     flex-direction: column;
@@ -48,7 +44,6 @@ label {
     color: #333;
 }
 
-/* Input, Select, Textarea талбарууд */
 input, select, textarea {
     padding: 12px 15px;
     border: 1.5px solid #d0d7de;
@@ -58,7 +53,6 @@ input, select, textarea {
     transition: all 0.2s ease;
 }
 
-/* Фокус үед */
 input:focus, select:focus, textarea:focus {
     border-color: #3b82f6;
     background-color: #fff;
@@ -66,18 +60,18 @@ input:focus, select:focus, textarea:focus {
     outline: none;
 }
 
-/* Hover үед */
+
 input:hover, select:hover, textarea:hover {
     border-color: #93c5fd;
 }
 
-/* Textarea */
+
 textarea {
     resize: vertical;
     min-height: 100px;
 }
 
-/* Checkbox хэсэг */
+
 .checkbox-group {
     padding: 15px;
     border: 1.5px solid #e5e7eb;
@@ -92,12 +86,12 @@ textarea {
     color: #444;
 }
 
-/* Grid-ийн өргөн */
+
 .full-width {
     grid-column: 1 / -1;
 }
 
-/* Товч */
+
 button {
     margin-top: 30px;
     padding: 14px;
@@ -116,7 +110,6 @@ button:hover {
     transform: scale(1.02);
 }
 
-/* Responsive тохиргоо */
 @media (max-width: 600px) {
     body {
         padding: 20px;
