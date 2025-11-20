@@ -29,13 +29,13 @@
 
       .main {
         grid-area: main;
+        display: flex;
+        gap: 1rem;
       }
 
       .footer {
         grid-area: footer;
-        margin-top: 2rem;
         background: linear-gradient(90deg, var(--color2), var(--color6) 90%);
-        /* background-color: var(--color5); */
         color: var(--color4);
         padding: 2rem 2rem;
       }
@@ -92,7 +92,7 @@
       }
 
       .search-container {
-        margin: 2rem 0 2rem 0;
+        /* margin: 2rem 0 2rem 0; */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -146,18 +146,99 @@
             }
           }
 
-          .toggle-input:checked + .toggle-btn svg {
+          /* .toggle-input:checked + .toggle-btn svg {
             transform: rotate(180deg);
+          } */
+        }
+      }
+
+      .left-panel {
+        display: flex;
+        justify-content: space-between;
+        width: 250px; /* sidebar-ын өргөн */
+        height: 100vh; /* дэлгэцийн өндөртэй тэнцүү */
+        overflow-y: auto; /* vertical scroll нэмэх */
+        position: sticky; /* scroll хийхэд байрнаасаа хөдөлдөггүй */
+        top: 0;
+        background: var(--color4);
+        box-sizing: border-box;
+        transition: transform 0.3s ease;
+
+        .category {
+          padding: 1rem;
+
+          .checkbox-group {
+            display: flex;
+            flex-direction: column; /* checkbox-уудыг нэг мөр болгож байрлуулна */
+            gap: 0.5rem; /* checkbox хооронд зай */
+          }
+
+          .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+          }
+          
+          .checkbox-group label:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+
+          .checkbox-group input[type="checkbox"] {
+            accent-color: #007bff; /* checkbox өнгө */
+            width: 18px;
+            height: 18px;
           }
         }
       }
 
+      .left-panel.hidden {
+        display: none;
+      }
+
+      .closeBtn {
+        top: 40vh; /* navbar-ын доор харагдана */
+        background: var(--color4);
+        color: var(--color2);
+        border: none;
+        cursor: pointer;
+      }
+
+      .show-sidebar-btn {
+        top: 0;
+        height: 100vh; /* дэлгэцийн өндөртэй тэнцүү */
+        overflow-y: auto; /* vertical scroll нэмэх */
+        position: sticky; /* scroll хийхэд байрнаасаа хөдөлдөггүй */
+        box-sizing: border-box;
+        transition: transform 0.3s ease;
+        background: var(--color4);
+        color: var(--color2);
+        border: none;
+        cursor: pointer;
+        z-index: 999;
+        display: none;
+      }
+
+      .right-panel {
+        flex: 1;
+        padding: 2rem;
+      }
+
       .grid-layout {
         display: grid;
-        grid-template-columns: repeat(4, minmax(21rem, 1fr));
+        margin-top: 2rem;
+        grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         justify-content: space-evenly;
         gap: 2rem;
+        transition: grid-template-columns 0.3s ease;
+      }
+
+      .grid-layout.full-width {
+        grid-template-columns: repeat(4, 1fr);
       }
 
       .card {
@@ -255,6 +336,27 @@
       }
     </style>
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const sidebar = document.querySelector(".left-panel");
+        const closeBtn = document.querySelector(".closeBtn");
+        const showBtn = document.querySelector(".show-sidebar-btn");
+        const grid = document.querySelector(".grid-layout");
+
+        // ХААХ
+        closeBtn.addEventListener("click", () => {
+          sidebar.classList.add("hidden");
+          grid.classList.add("full-width"); // 4 column
+          showBtn.style.display = "block"; // show button appears
+        });
+
+        // НЭЭХ
+        showBtn.addEventListener("click", () => {
+          sidebar.classList.remove("hidden");
+          grid.classList.remove("full-width");
+          showBtn.style.display = "none"; // hide button again
+        });
+      });
+
       class JobCard extends HTMLElement {
         connectedCallback() {
           this.innerHTML = `
@@ -551,33 +653,92 @@
       </nav>
     </header>
     <main class="main">
-      <div class="search-container">
-        <div class="search">
-          <input
-            type="text"
-            placeholder="Хайх утга..."
-            name="search"
-            aria-label="Хайх"
-          />
-          <div class="toggle-container">
-            <input type="checkbox" id="arrowToggle" class="toggle-input" />
-            <label for="arrowToggle" class="toggle-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M10.44 3a7.44 7.44 0 1 0 4.803 13.122c-.022.271.07.55.278.757l3.84 3.84a.96.96 0 1 0 1.358-1.358l-3.84-3.84a.96.96 0 0 0-.757-.278A7.44 7.44 0 0 0 10.44 3m-6 7.44a6 6 0 1 1 12 0a6 6 0 0 1-12 0"
-                />
-              </svg>
+      <aside class="left-panel">
+        <div class="category">
+          <h3>Категори</h3>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="category" value="it" />
+              IT / Программчлал
+            </label>
+            <label>
+              <input type="checkbox" name="category" value="marketing" />
+              Маркетинг
+            </label>
+            <label>
+              <input type="checkbox" name="category" value="management" />
+              Менежмент
+            </label>
+            <label>
+              <input type="checkbox" name="category" value="design" />
+              Дизайн
+            </label>
+            <label>
+              <input type="checkbox" name="category" value="sales" />
+              Борлуулалт
+            </label>
+            <label>
+              <input type="checkbox" name="category" value="engineering" />
+              Инженер
             </label>
           </div>
         </div>
-      </div>
-      <job-list id="offers"></job-list>
+        <button class="closeBtn">
+          <svg
+            width="20"
+            height="20"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M3.752 5.25a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 6a.75.75 0 0 0-.75-.75Zm2.5 3.5a.75.75 0 0 0-.532.219l-2.5 2.5a.75.75 0 0 0 0 1.062l2.5 2.5a.75.75 0 0 0 1.063 0a.75.75 0 0 0 0-1.062L4.814 12l1.969-1.969a.75.75 0 0 0 0-1.062a.75.75 0 0 0-.532-.219m2.75 2.5a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 12a.75.75 0 0 0-.75-.75Zm-5.25 6a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 18a.75.75 0 0 0-.75-.75Z"
+            />
+          </svg>
+        </button>
+      </aside>
+      <button class="show-sidebar-btn">
+        <svg
+          width="20"
+          height="20"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M3.752 5.25a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 6a.75.75 0 0 0-.75-.75Zm0 3.5a.75.75 0 0 0-.531.219a.75.75 0 0 0 0 1.062L5.189 12l-1.968 1.969a.75.75 0 0 0 0 1.062a.75.75 0 0 0 1.062 0l2.5-2.5a.75.75 0 0 0 0-1.062l-2.5-2.5a.75.75 0 0 0-.531-.219m5.25 2.5a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 12a.75.75 0 0 0-.75-.75Zm-5.25 6a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 18a.75.75 0 0 0-.75-.75Z"
+          />
+        </svg>
+      </button>
+      <sidebar class="right-panel">
+        <div class="search-container">
+          <div class="search">
+            <input
+              type="text"
+              placeholder="Хайх утга..."
+              name="search"
+              aria-label="Хайх"
+            />
+            <div class="toggle-container">
+              <input type="checkbox" id="arrowToggle" class="toggle-input" />
+              <label for="arrowToggle" class="toggle-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M10.44 3a7.44 7.44 0 1 0 4.803 13.122c-.022.271.07.55.278.757l3.84 3.84a.96.96 0 1 0 1.358-1.358l-3.84-3.84a.96.96 0 0 0-.757-.278A7.44 7.44 0 0 0 10.44 3m-6 7.44a6 6 0 1 1 12 0a6 6 0 0 1-12 0"
+                  />
+                </svg>
+              </label>
+            </div>
+          </div>
+        </div>
+        <job-list id="offers"></job-list>
+      </sidebar>
     </main>
     <footer class="footer">
       <div class="footer-inner">
