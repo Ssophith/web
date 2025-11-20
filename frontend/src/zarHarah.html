@@ -9,6 +9,7 @@
       .container {
         display: grid;
         font-family: var(--font1);
+        background-color: var(--color3);
         margin: 0;
         padding: 0;
 
@@ -33,7 +34,7 @@
       .footer {
         grid-area: footer;
         margin-top: 2rem;
-        background: linear-gradient(180deg, var(--color5), var(--color6) 90%);
+        background: linear-gradient(90deg, var(--color2), var(--color6) 90%);
         /* background-color: var(--color5); */
         color: var(--color4);
         padding: 2rem 2rem;
@@ -103,9 +104,10 @@
         justify-content: center;
         width: 50%;
         height: 3rem;
-        border: var(--bordersize1) solid var(--color2);
+        /* border: var(--bordersize1) solid var(--color2); */
         border-radius: var(--border_radius1);
         background-color: var(--color4);
+        box-shadow: 0rem 2px 7px var(--color5);
 
         input {
           padding-left: 2ch;
@@ -153,8 +155,9 @@
       .grid-layout {
         display: grid;
         grid-template-columns: repeat(4, minmax(21rem, 1fr));
-        gap: 1rem;
         justify-items: center;
+        justify-content: space-evenly;
+        gap: 2rem;
       }
 
       .card {
@@ -162,8 +165,9 @@
         height: auto;
         padding: 2rem;
         background-color: var(--color4);
-        border: var(--bordersize1) solid var(--color6);
+        /* border: var(--bordersize1) solid var(--color6); */
         border-radius: var(--border_radius1);
+        box-shadow: 0rem 2px 7px var(--color5);
 
         h2 {
           font-size: var(--fontsize1);
@@ -182,7 +186,7 @@
         height: auto;
         padding: 1rem;
         font-size: var(--fontsize2);
-        background-color: var(--color3);
+        background-color: var(--color2);
         border-radius: var(--border_radius1);
       }
 
@@ -562,15 +566,11 @@
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
-                viewBox="0 0 48 48"
+                viewBox="0 0 24 24"
               >
                 <path
-                  fill="none"
-                  stroke="#000"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="4"
-                  d="M36 18L24 30L12 18"
+                  fill="currentColor"
+                  d="M10.44 3a7.44 7.44 0 1 0 4.803 13.122c-.022.271.07.55.278.757l3.84 3.84a.96.96 0 1 0 1.358-1.358l-3.84-3.84a.96.96 0 0 0-.757-.278A7.44 7.44 0 0 0 10.44 3m-6 7.44a6 6 0 1 1 12 0a6 6 0 0 1-12 0"
                 />
               </svg>
             </label>
