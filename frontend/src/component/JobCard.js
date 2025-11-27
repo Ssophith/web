@@ -2,9 +2,16 @@ export class JobCard extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <style>
+      .main {
+        grid-area: main;
+        display: flex;
+        gap: 1rem;
+      }
+
       .grid-layout {
         display: grid;
         margin-top: 2rem;
+        margin-bottom: 2rem;
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         justify-content: space-evenly;

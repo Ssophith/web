@@ -1,8 +1,8 @@
 class JobDetail extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-          <div class="container">
-       <header class="header">
+  <div class="container">
+    <header class="header">
       <div class="flex-profl">
         <div>
           <svg

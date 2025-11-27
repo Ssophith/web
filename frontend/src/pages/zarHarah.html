@@ -21,139 +21,102 @@
         grid-template-rows: 8vh 1fr 35vh;
       }
 
-      .header {
+      header-component {
         grid-area: header;
-        background-color: var(--color4);
-        color: var(--color6);
       }
 
-      /* .main {
+      .main {
         grid-area: main;
-        display: flex;
-        gap: 1rem;
-      } */
+      }
 
-      .footer {
+      footer-component {
         grid-area: footer;
-        background: linear-gradient(90deg, var(--color2), var(--color6) 90%);
-        color: var(--color4);
-        padding: 2rem 2rem;
-      }
-
-      .flex-navbar {
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0rem 2px 7px var(--color5);
-
-        img {
-          width: 5rem;
-          height: auto;
-          margin-left: 0.5rem;
-        }
-
-        .button {
-          display: flex;
-          margin-right: 0.5rem;
-          align-items: center;
-          text-decoration: none;
-          background-color: var(--color4);
-          border: none;
-          color: var(--color6);
-          gap: 0.5rem;
-        }
-
-        .button:hover {
-          color: var(--color1);
-        }
-      }
-
-      .flex-navbarbottom {
-        width: 60%;
-        display: flex;
-        justify-content: space-between;
-
-        a {
-          text-decoration: none;
-          color: var(--color6);
-          font-size: var(--fontsize2);
-
-          div {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-          }
-        }
-
-        a:hover {
-          color: var(--color1);
-        }
-      }
-
-      .search-container {
-        /* margin: 2rem 0 2rem 0; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
 
       .search {
+        position: sticky;
+        top: 0;
+        background-color: var(--color3);
+        padding: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50%;
-        height: 3rem;
-        /* border: var(--bordersize1) solid var(--color2); */
-        border-radius: var(--border_radius1);
-        background-color: var(--color4);
-        box-shadow: 0rem 2px 7px var(--color5);
 
-        input {
-          padding-left: 2ch;
+        .show-sidebar-btn {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 50px;
+          height: 50px;
+          overflow: hidden;
+          background: var(--color1);
+          color: var(--color4);
           border: none;
-          width: 90%;
-          height: 90%;
-          border: none;
-          border-radius: var(--border_radius1);
-        }
-
-        input:focus {
-          outline: none;
-        }
-
-        .toggle-container {
-          width: 10%;
-          height: 100%;
-          display: inline-block;
-          border-radius: var(--border_radius1);
+          border-radius: 0 var(--border_radius1) var(--border_radius1) 0;
           cursor: pointer;
-          border: none;
+          z-index: 999;
+          white-space: nowrap;
+          display: none;
+          transition: width 0.5s ease-in-out;
+        }
 
-          .toggle-input {
-            display: none;
+        .show-sidebar-btn:hover,
+        .show-sidebar-btn:focus {
+          width: 70px;
+        }
+
+        .search-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50%;
+          height: 3rem;
+          border-radius: var(--border_radius1);
+          background-color: var(--color4);
+          box-shadow: 0rem 2px 7px var(--color5);
+
+          input {
+            padding-left: 2ch;
+            border: none;
+            width: 90%;
+            height: 90%;
+            border: none;
+            border-radius: var(--border_radius1);
           }
 
-          .toggle-btn {
-            height: 100%;
-            width: 100%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+          input:focus {
+            outline: none;
+          }
 
-            svg {
-              transition: transform 0.3s ease;
+          .toggle-container {
+            width: 10%;
+            height: 100%;
+            display: inline-block;
+            border-radius: var(--border_radius1);
+            cursor: pointer;
+            border: none;
+
+            .toggle-input {
+              display: none;
+            }
+
+            .toggle-btn {
+              height: 100%;
+              width: 100%;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+
+              svg {
+                transition: transform 0.3s ease;
+              }
             }
           }
-
-          /* .toggle-input:checked + .toggle-btn svg {
-            transform: rotate(180deg);
-          } */
         }
       }
 
       .left-panel {
-        display: flex;
         justify-content: space-between;
         width: 250px; /* sidebar-ын өргөн */
         height: 100vh; /* дэлгэцийн өндөртэй тэнцүү */
@@ -166,6 +129,17 @@
 
         .category {
           padding: 1rem;
+
+          .closeBtn {
+            background: var(--color4);
+            color: var(--color6);
+            border: none;
+            cursor: pointer;
+          }
+
+          .closeBtn:hover {
+            color: var(--color1);
+          }
 
           .checkbox-group {
             display: flex;
@@ -199,32 +173,9 @@
         display: none;
       }
 
-      .closeBtn {
-        top: 40vh; /* navbar-ын доор харагдана */
-        background: var(--color4);
-        color: var(--color2);
-        border: none;
-        cursor: pointer;
-      }
-
-      .show-sidebar-btn {
-        top: 0;
-        height: 100vh; /* дэлгэцийн өндөртэй тэнцүү */
-        overflow-y: auto; /* vertical scroll нэмэх */
-        position: sticky; /* scroll хийхэд байрнаасаа хөдөлдөггүй */
-        box-sizing: border-box;
-        transition: transform 0.3s ease;
-        background: var(--color4);
-        color: var(--color2);
-        border: none;
-        cursor: pointer;
-        z-index: 999;
-        display: none;
-      }
-
       .right-panel {
         flex: 1;
-        padding: 2rem;
+        /* padding: 2rem; */
       }
 
       /* .grid-layout {
@@ -348,7 +299,9 @@
       }
     </style>
     <script type="module">
+      import "../component/Header.js";
       import "../component/JobList.js";
+      import "../component/Footer.js";
 
       document.addEventListener("DOMContentLoaded", () => {
         const sidebar = document.querySelector(".left-panel");
@@ -373,122 +326,26 @@
     </script>
   </head>
   <body class="container">
-    <header class="header">
-      <nav class="flex-navbar">
-        <img src="../images/logo.png" />
-        <div class="flex-navbarbottom">
-          <a href="./zarHarah.html">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
-                viewBox="0 0 256 256"
-              >
-                <path
-                  fill="currentColor"
-                  d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8ZM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16Zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16Z"
-                />
-              </svg>
-              <p>Зар</p>
-            </div>
-          </a>
-          <a href="./miniiZar.html">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M18.192 19.385v-3h-3v-1h3v-3h1v3h3v1h-3v3h-1ZM3.423 20q-.69 0-1.153-.463q-.462-.462-.462-1.152V5.615q0-.69.462-1.153Q2.733 4 3.423 4h12.77q.69 0 1.152.463q.463.462.463 1.152V10h-1V7.385h-14v11q0 .269.173.442t.442.173h12.385v1H3.423ZM2.808 6.385h14v-.77q0-.269-.173-.442T16.192 5H3.423q-.27 0-.442.173t-.173.442v.77Zm0 0V5v1.385Z"
-                />
-              </svg>
-              <p>Миний зар</p>
-            </div>
-          </a>
-          <a href="./miniiAjil.html">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="#000000"
-              >
-                <g
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                >
-                  <path
-                    d="M2 14c0-2.809 0-4.213.674-5.222a4 4 0 0 1 1.104-1.104C4.787 7 6.19 7 9 7h6c2.809 0 4.213 0 5.222.674a4 4 0 0 1 1.104 1.104C22 9.787 22 11.19 22 14s0 4.213-.674 5.222a4 4 0 0 1-1.104 1.104C19.213 21 17.81 21 15 21H9c-2.809 0-4.213 0-5.222-.674a4 4 0 0 1-1.104-1.104C2 18.213 2 16.81 2 14m14-7c0-1.886 0-2.828-.586-3.414S13.886 3 12 3s-2.828 0-3.414.586S8 5.114 8 7"
-                  />
-                  <path
-                    d="m6 11l.652.202a18.3 18.3 0 0 0 10.696 0L18 11m-6 1v2"
-                  />
-                </g>
-              </svg>
-              <p>Миний ажил</p>
-            </div>
-          </a>
-          <a href="./profile.html">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                >
-                  <path
-                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"
-                  />
-                  <path
-                    d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"
-                  />
-                </g>
-              </svg>
-              <p>Би</p>
-            </div>
-          </a>
-        </div>
-        <div>
-          <a href="./login.html" class="button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M13.496 21H6.5c-1.105 0-2-1.151-2-2.571V5.57c0-1.419.895-2.57 2-2.57h7M16 15.5l3.5-3.5L16 8.5m-6.5 3.496h10"
-              />
-            </svg>
-            <p>Гарах</p>
-          </a>
-        </div>
-      </nav>
-    </header>
+    <header-component></header-component>
     <main class="main">
       <aside class="left-panel">
         <div class="category">
-          <h3>Категори</h3>
+          <div class="flex">
+            <h3>Категори</h3>
+            <button class="closeBtn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M6.225 4.811a1 1 0 0 0-1.414 1.414L10.586 12L4.81 17.775a1 1 0 1 0 1.414 1.414L12 13.414l5.775 5.775a1 1 0 0 0 1.414-1.414L13.414 12l5.775-5.775a1 1 0 0 0-1.414-1.414L12 10.586L6.225 4.81Z"
+                />
+              </svg>
+            </button>
+          </div>
           <div class="checkbox-group">
             <label>
               <input type="checkbox" name="category" value="it" />
@@ -516,36 +373,23 @@
             </label>
           </div>
         </div>
-        <button class="closeBtn">
-          <svg
-            width="20"
-            height="20"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              d="M3.752 5.25a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 6a.75.75 0 0 0-.75-.75Zm2.5 3.5a.75.75 0 0 0-.532.219l-2.5 2.5a.75.75 0 0 0 0 1.062l2.5 2.5a.75.75 0 0 0 1.063 0a.75.75 0 0 0 0-1.062L4.814 12l1.969-1.969a.75.75 0 0 0 0-1.062a.75.75 0 0 0-.532-.219m2.75 2.5a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 12a.75.75 0 0 0-.75-.75Zm-5.25 6a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 18a.75.75 0 0 0-.75-.75Z"
-            />
-          </svg>
-        </button>
       </aside>
-      <button class="show-sidebar-btn">
-        <svg
-          width="20"
-          height="20"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="M3.752 5.25a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 6a.75.75 0 0 0-.75-.75Zm0 3.5a.75.75 0 0 0-.531.219a.75.75 0 0 0 0 1.062L5.189 12l-1.968 1.969a.75.75 0 0 0 0 1.062a.75.75 0 0 0 1.062 0l2.5-2.5a.75.75 0 0 0 0-1.062l-2.5-2.5a.75.75 0 0 0-.531-.219m5.25 2.5a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 12a.75.75 0 0 0-.75-.75Zm-5.25 6a.75.75 0 0 0-.75.75a.75.75 0 0 0 .75.75H20.25A.75.75 0 0 0 21 18a.75.75 0 0 0-.75-.75Z"
-          />
-        </svg>
-      </button>
       <sidebar class="right-panel">
-        <div class="search-container">
-          <div class="search">
+        <div class="search">
+          <button class="show-sidebar-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill="currentColor"
+                d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"
+              />
+            </svg>
+          </button>
+          <div class="search-container">
             <input
               type="text"
               placeholder="Хайх утга..."
@@ -573,61 +417,6 @@
         <job-list></job-list>
       </sidebar>
     </main>
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-links">
-          <h4>Хурдан холбоос</h4>
-          <ul>
-            <li><a href="/dashboard">Хяналтын самбар</a></li>
-            <li><a href="/timesheets">Цагийн хуудсууд</a></li>
-            <li><a href="/help">Тусламж</a></li>
-          </ul>
-        </div>
-        <div class="footer-contact">
-          <h4>Холбоо барих</h4>
-          <div class="contact-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-miterlimit="10"
-                stroke-width="1.5"
-                d="M12.735 20.191a15.2 15.2 0 0 1-.92-.447a19.012 19.012 0 0 1-4.1-3.12A18.002 18.002 0 0 1 3.88 11.42a11.259 11.259 0 0 1-1.022-3.325a5.925 5.925 0 0 1 .37-3.465c.289-.47.637-.9 1.035-1.279a1.801 1.801 0 0 1 1.278-.601c.505.076.962.34 1.278.742c.69.767 1.43 1.457 2.159 2.186c.287.246.466.595.498.972c-.012.317-.134.62-.345.857c-.242.307-.536.588-.817.882a1.535 1.535 0 0 0-.46 1.279a3.67 3.67 0 0 0 .881 1.457c.486.665.971 1.28 1.52 1.931a13.573 13.573 0 0 0 3.463 2.865a1.277 1.277 0 0 0 1.278.153a4.05 4.05 0 0 0 1.137-.946c.275-.335.669-.55 1.099-.601c.383.02.744.184 1.01.46c.344.294.638.64.958.959c.319.32.575.55.843.844c.321.283.624.586.907.908c.22.284.324.64.294.997a2.1 2.1 0 0 1-.703 1.087a4.78 4.78 0 0 1-3.756 1.458a10.673 10.673 0 0 1-4.05-1.049Z"
-              />
-            </svg>
-            <span>Утас: +976 9999 0000</span>
-          </div>
-
-          <div class="contact-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <g fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect width="18.5" height="17" x="2.682" y="3.5" rx="4" />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m2.729 7.59l7.205 4.13a3.956 3.956 0 0 0 3.975 0l7.225-4.13"
-                />
-              </g>
-            </svg>
-            <span>Имэйл: support@example.mn</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>Бүх эрх хуулиар хамгаалагдсан.</p>
-      </div>
-    </footer>
+    <footer-component></footer-component>
   </body>
 </html>

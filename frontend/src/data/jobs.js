@@ -59,5 +59,45 @@ export const jobs = [
     transport: "Өөрөө зохицуулах",
     note: "Хүнд ажил, аюулгүй байдлыг хангах"
   },
+    {
+    id: 104,
+    userId: 2, // Бат-Эрдэнэ
+    title: "Барилгын ажилтан",
+    salary: "120000₮",
+    jobType: "Хагас өдөр",
+    location: "Хан-Уул дүүрэг",
+    workDate: "2025-11-10",
+    workTime: "09:00 - 13:00",
+    requiredWorkers: 10,
+    hiredWorkers: 4,
+    age: "18-50",
+    gender: "Эрэгтэй, Эмэгтэй",
+    experience: "Туршлагатай",
+    clothes: "Хувцас, ботинк",
+    otherRequirements: "Баг хамт олон ажиллах чадвартай",
+    food: "Өдрийн хоол олгоно",
+    transport: "Өөрөө зохицуулах",
+    note: "Хүнд ажил, аюулгүй байдлыг хангах"
+  },
+    {
+    id: 105,
+    userId: 2, // Бат-Эрдэнэ
+    title: "Барилгын ажилтан",
+    salary: "120000₮",
+    jobType: "Хагас өдөр",
+    location: "Хан-Уул дүүрэг",
+    workDate: "2025-11-10",
+    workTime: "09:00 - 13:00",
+    requiredWorkers: 10,
+    hiredWorkers: 4,
+    age: "18-50",
+    gender: "Эрэгтэй, Эмэгтэй",
+    experience: "Туршлагатай",
+    clothes: "Хувцас, ботинк",
+    otherRequirements: "Баг хамт олон ажиллах чадвартай",
+    food: "Өдрийн хоол олгоно",
+    transport: "Өөрөө зохицуулах",
+    note: "Хүнд ажил, аюулгүй байдлыг хангах"
+  },
   // ... бусад ажлын зарууд
 ];
