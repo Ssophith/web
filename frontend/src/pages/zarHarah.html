@@ -27,11 +27,11 @@
         color: var(--color6);
       }
 
-      .main {
+      /* .main {
         grid-area: main;
         display: flex;
         gap: 1rem;
-      }
+      } */
 
       .footer {
         grid-area: footer;
@@ -227,7 +227,7 @@
         padding: 2rem;
       }
 
-      .grid-layout {
+      /* .grid-layout {
         display: grid;
         margin-top: 2rem;
         grid-template-columns: repeat(3, 1fr);
@@ -246,7 +246,6 @@
         height: auto;
         padding: 2rem;
         background-color: var(--color4);
-        /* border: var(--bordersize1) solid var(--color6); */
         border-radius: var(--border_radius1);
         box-shadow: 0rem 2px 7px var(--color5);
 
@@ -282,7 +281,7 @@
         align-items: center;
         justify-content: flex-end;
         cursor: pointer;
-      }
+      } */
 
       .flex {
         display: flex;
@@ -348,7 +347,9 @@
         }
       }
     </style>
-    <script>
+    <script type="module">
+      import "../component/JobList.js";
+
       document.addEventListener("DOMContentLoaded", () => {
         const sidebar = document.querySelector(".left-panel");
         const closeBtn = document.querySelector(".closeBtn");
@@ -629,5 +630,4 @@
       </div>
     </footer>
   </body>
-  <script type="module" src="./src/component/JobList.js"></script>
 </html>

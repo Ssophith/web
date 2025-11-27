@@ -1,4 +1,3 @@
-customElements.define("job-list", JobList);
 import "./JobCard.js";
 import { jobs } from "../data/jobs.js";
 import { users } from "../data/users.js";
