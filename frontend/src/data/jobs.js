@@ -1,0 +1,63 @@
+export const jobs = [
+  {
+    id: 101,
+    userId: 1, // Солонго
+    title: "Газар ухна",
+    salary: "80000₮",
+    jobType: "Бүтэн цаг",
+    location: "Сүхбаатар дүүрэг",
+    workDate: "2025-11-02",
+    workTime: "09:00 - 18:00",
+    requiredWorkers: 5,
+    hiredWorkers: 2,
+    age: "18-35",
+    gender: "Эрэгтэй",
+    experience: "Туршлага шаардахгүй",
+    clothes: "Ажлын бээлий, ботинк",
+    otherRequirements: "Хариуцлагатай, цаг баримталдаг",
+    food: "Өдрийн 1 хоолтой",
+    transport: "Унааны мөнгө олгоно",
+    note: "Ачаалал бага, ажил энгийн."
+  },
+  {
+    id: 102,
+    userId: 1, // Солонго
+    title: "Цемент зөөвөрлөх",
+    salary: "90000₮",
+    jobType: "Бүтэн цаг",
+    location: "Баянзүрх дүүрэг",
+    workDate: "2025-11-05",
+    workTime: "08:00 - 17:00",
+    requiredWorkers: 3,
+    hiredWorkers: 0,
+    age: "20-40",
+    gender: "Эрэгтэй, Эмэгтэй",
+    experience: "Туршлагатай",
+    clothes: "Бээлий, хамгаалалтын малгай",
+    otherRequirements: "Сайн бэлтгэгдсэн байх",
+    food: "Өдрийн хоолтой",
+    transport: "Унааны мөнгө олгоно",
+    note: "Ачаалал дунд, ажил хүнд."
+  },
+  {
+    id: 103,
+    userId: 2, // Бат-Эрдэнэ
+    title: "Барилгын ажилтан",
+    salary: "120000₮",
+    jobType: "Хагас өдөр",
+    location: "Хан-Уул дүүрэг",
+    workDate: "2025-11-10",
+    workTime: "09:00 - 13:00",
+    requiredWorkers: 10,
+    hiredWorkers: 4,
+    age: "18-50",
+    gender: "Эрэгтэй, Эмэгтэй",
+    experience: "Туршлагатай",
+    clothes: "Хувцас, ботинк",
+    otherRequirements: "Баг хамт олон ажиллах чадвартай",
+    food: "Өдрийн хоол олгоно",
+    transport: "Өөрөө зохицуулах",
+    note: "Хүнд ажил, аюулгүй байдлыг хангах"
+  },
+  // ... бусад ажлын зарууд
+];
