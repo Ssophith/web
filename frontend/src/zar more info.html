@@ -11,7 +11,7 @@
         font-family: var(--font1);
         margin: 0;
         justify-content: center;
-
+        background-color: var(--color3);
         grid-template-areas:
           "header header"
           "main sidebar1"
@@ -60,24 +60,42 @@
         margin: 0 0 0 1rem;
       }
 
-      h1 {
-        font-size: var(--font1);
+      .flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
+
+      h1 {
+        font-size: var(--fontsize2);
+      }
+
+      h2 {
+        font-size: var(--fontsize1);;
+        text-align: center;
+      }
+
       .maindiv {
-        height: 95%;
-        border: var(--bordersize1) solid var(--color2);
+        height: auto;
+        padding: 1rem;
+        background-color: var(--color4);
         border-radius: var(--border_radius1);
-        
+        box-shadow: 0rem 2px 7px var(--color5);
       }
       .sectiondiv {
-        height: 90%;
-        border: var(--bordersize1) solid var(--color2);
+        height: auto;
+        padding: 1rem;
+        background-color: var(--color4);
         border-radius: var(--border_radius1);
+        box-shadow: 0rem 2px 7px var(--color5);
       }
     </style>
-  </head>
-  <body class="container">
-    <header class="header">
+    <script>
+      class JobDetail extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `
+          <div class="container">
+       <header class="header">
       <div class="flex-profl">
         <div>
           <svg
@@ -128,15 +146,126 @@
     </header>
     <section class="main">
       <h1>Үндсэн мэдээлэл</h1>
-      <div class="maindiv"></div>
+      <div class="maindiv">
+        <h2>${this.getAttribute("title") || ""}</h2>
+        <p>Цалин: ${this.getAttribute("salary") || ""}</p>
+        <p>Ажлын төрөл: ${this.getAttribute("jobType") || ""}</p>
+        <p>Байршил: ${this.getAttribute("location") || ""}</p>
+        <p>Өдөр: ${this.getAttribute("workdate") || ""}</p>
+        <p>Цаг: ${this.getAttribute("worktime") || ""}</p>
+        <p>Ажилд авах хүний тоо: ${
+          this.getAttribute("requiredworker") || ""
+        }</p>
+        <p>Ажилд авсан хүний тоо: ${
+          this.getAttribute("gettingworker") || ""
+        }</p>
+      </div>
     </section>
     <section class="sidebar1">
       <h1>Шаардлага</h1>
-      <div class="sectiondiv"></div>
+      <div class="sectiondiv">
+        <p>Нас: ${this.getAttribute("age") || ""}</p>
+        <p>Хүйс: ${this.getAttribute("gender") || ""}</p>
+        <p>Туршлага: ${this.getAttribute("exp") || ""}</p>
+        <p>Хувцас: ${this.getAttribute("clothes") || ""}</p>
+        <p>Бусад шаардлага: ${this.getAttribute("otherRequirements") || ""}</p>
+      </div>
     </section>
     <section class="sidebar2">
       <h1>Нэмэлт мэдээлэл</h1>
-      <div class="sectiondiv"></div>
+      <div class="sectiondiv">
+        <p>Хоол: ${this.getAttribute("food") || ""}</p>
+        <p>Унаа: ${this.getAttribute("transport") || ""}</p>
+        <p>Нэмэлт тайлбар: ${this.getAttribute("note") || ""}</p>
+      </div>
     </section>
+    </div>
+    `;
+        }
+      }
+      customElements.define("job-detail", JobDetail);
+
+      class JobDetailList extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `
+            <div id="list-container"></div>
+          `;
+        }
+
+        set items(list) {
+          const container = this.querySelector("#list-container");
+          let html = "";
+
+          list.forEach((item) => {
+            html += `
+        <job-detail 
+          name="${item.name}"
+          type="${item.type}"
+          date="${item.date}"
+
+          title="${item.title}"
+          salary="${item.salary}"
+          jobType="${item.jobType}"
+          location="${item.location}"
+          workdate="${item.workDate}"
+          worktime="${item.workTime}"
+
+          requiredworker="${item.requiredworker}"
+          gettingworker="${item.gettingworker}"
+
+          age="${item.age}"
+          gender="${item.gender}"
+          exp="${item.exp}"
+          clothes="${item.clothes}"
+          otherRequirements="${item.otherRequirements}"
+
+          food="${item.food}"
+          transport="${item.transport}"
+          note="${item.note}"
+        ></job-detail>`;
+          });
+
+          container.innerHTML = html;
+        }
+      }
+      customElements.define("job-detail-list", JobDetailList);
+
+      document.addEventListener(`DOMContentLoaded`, () => {
+        const offers = [
+          {
+            name: "Солонго",
+            type: "Хувь хүн",
+            date: "2025-10-22",
+
+            title: "Газар ухна",
+            salary: "80000₮",
+            jobType: "Бүтэн цаг",
+
+            location: "Сүхбаатар дүүрэг",
+
+            workDate: "2025-11-02",
+            workTime: "09:00 - 18:00",
+
+            requiredworker: "5",
+            gettingworker: "2",
+
+            age: "18-35",
+            gender: "Эрэгтэй",
+            exp: "Туршлага шаардахгүй",
+            clothes: "Ажлын бээлий, ботинк",
+            otherRequirements: "Хариуцлагатай, цаг баримталдаг",
+
+            food: "Өдрийн 1 хоолтой",
+            transport: "Унааны мөнгө олгоно",
+            note: "Ачаалал бага, ажил энгийн.",
+          },
+        ];
+
+        document.querySelector("#offers").items = offers;
+      });
+    </script>
+  </head>
+  <body>
+    <job-detail-list id="offers"></job-detail-list>
   </body>
 </html>
