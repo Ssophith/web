@@ -64,7 +64,7 @@ export class HeaderComponent extends HTMLElement {
       <nav class="flex-navbar">
         <img src="../images/logo.png" />
         <div class="flex-navbarbottom">
-          <a href="./zarHarah.html">
+          <a href="../pages/zarHarah.html">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ export class HeaderComponent extends HTMLElement {
               <p>Зар</p>
             </div>
           </a>
-          <a href="./miniiZar.html">
+          <a href="../pages/miniiZar.html">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ export class HeaderComponent extends HTMLElement {
               <p>Миний зар</p>
             </div>
           </a>
-          <a href="./miniiAjil.html">
+          <a href="../pages/miniiAjil.html">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,7 @@ export class HeaderComponent extends HTMLElement {
               <p>Миний ажил</p>
             </div>
           </a>
-          <a href="./profile.html">
+          <a href="../pages/profile.html">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
