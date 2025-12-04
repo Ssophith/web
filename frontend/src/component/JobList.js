@@ -26,6 +26,7 @@ export class JobList extends HTMLElement {
       .map(
         item => `
         <job-card
+          jobId="${item.id}"
           name="${item.name}"
           type="${item.type}"
           date="${item.date}"

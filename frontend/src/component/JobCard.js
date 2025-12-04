@@ -57,7 +57,6 @@ export class JobCard extends HTMLElement {
         height: 2.5rem;
         background-color: var(--color4);
         border: none;
-        border-radius: var(--border_radius1);
         color: var(--color1);
         display: flex;
         align-items: center;
@@ -146,12 +145,20 @@ export class JobCard extends HTMLElement {
             <path fill="currentColor" d="M8.6 3.4L14.2 9H2v2h12.2l-5.6 5.6L10 18l8-8l-8-8z"/>
             </svg>
           </button>
-          <div id="jobModal" class="modal" style="display:none;">
-            <div class="modal-content">
-            </div>
           </div>
       </article>
     `;
+    const btn = this.querySelector(".details-btn");
+    btn.addEventListener("click", () => {
+      const jobId = this.getAttribute("jobId");
+
+      this.dispatchEvent(
+        new CustomEvent("show-job-detail", {
+          detail: { jobId },
+          bubbles: true, // Event-г дээш дамжуулна
+        })
+      );
+    });
   }
 }
 customElements.define("job-card", JobCard);
