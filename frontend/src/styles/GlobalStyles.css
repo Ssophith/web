@@ -12,6 +12,7 @@
   --color4: hsl(0, 0%, 100%);
   --color5: hsl(0, 0%, 75%);
   --color6: hsl(0, 0%, 0%);
+  --color7: rgba(50, 50, 50, 0.5);;
 
   --fontsize1: 1.5rem;
   --fontsize2: 1rem;

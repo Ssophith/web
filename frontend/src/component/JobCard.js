@@ -155,7 +155,7 @@ export class JobCard extends HTMLElement {
       this.dispatchEvent(
         new CustomEvent("show-job-detail", {
           detail: { jobId },
-          bubbles: true, // Event-г дээш дамжуулна
+          bubbles: true,
         })
       );
     });

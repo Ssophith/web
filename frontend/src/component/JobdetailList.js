@@ -6,25 +6,19 @@ export class JobDetailList extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <style>
-        dialog {
-            position: fixed;
-            width: 80%;  /* Өргөн */
-            height: auto; /* Content-оос хамаарах өндөр */
-            padding: 0; /* dialog дотор padding, өөр div-д тавина */
-            border: none; 
-            border-radius: var(--border_radius1);
-            background-color: var(--color3); 
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3); /* Shadow */
-            z-index: 1000; /* Өөр элементүүдээс дээгүүр */
-        }
+      dialog {
+        margin: auto;
+        border: none;
+        padding: 0;
+        border-radius: var(--border_radius1);
+        background-color: var(--color3);
+      }
 
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.5); /* Хагас тунгалаг хар */
-            backdrop-filter: blur(2px); /* Blur нэмж болно */
-            overflow: hidden; /* Scroll-ыг хаах */
-            position: fixed;  /* Хуудасны байрлалыг тогтоох */
-            width: 100%;      /* Хажуугийн тасалдлыг багасгах */
-        }
+      dialog::backdrop {
+        background: var(--color7);
+        backdrop-filter: blur(10rem);
+      }
+
     </style>
     <dialog id="jobDialog">
       <div id="dialog-body"></div>
@@ -33,8 +27,16 @@ export class JobDetailList extends HTMLElement {
 
     this.dialog = this.querySelector("#jobDialog");
 
+    // Event listener job detail харах
     document.addEventListener("show-job-detail", (e) => {
       this.showDetail(e.detail.jobId);
+    });
+
+    // Dialog хаагдах үед scroll lock арилгах
+    this.dialog.addEventListener("close", () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+      this.querySelector("#dialog-body").innerHTML = ""; // хуучин content-ийг цэвэрлэх
     });
   }
 
@@ -78,7 +80,14 @@ export class JobDetailList extends HTMLElement {
   `;
 
     this.querySelector("#dialog-body").innerHTML = html;
+
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = scrollbarWidth + "px";
+
     this.dialog.showModal();
   }
 }
+
 customElements.define("job-detail-list", JobDetailList);
