@@ -33,89 +33,6 @@
         grid-area: footer;
       }
 
-      .search {
-        position: sticky;
-        top: 0;
-        background-color: var(--color3);
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .show-sidebar-btn {
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 50px;
-          height: 50px;
-          overflow: hidden;
-          background: var(--color1);
-          color: var(--color4);
-          border: none;
-          border-radius: 0 var(--border_radius1) var(--border_radius1) 0;
-          cursor: pointer;
-          z-index: 999;
-          white-space: nowrap;
-          display: none;
-          transition: width 0.5s ease-in-out;
-        }
-
-        .show-sidebar-btn:hover,
-        .show-sidebar-btn:focus {
-          width: 70px;
-        }
-
-        .search-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 50%;
-          height: 3rem;
-          border-radius: var(--border_radius1);
-          background-color: var(--color4);
-          box-shadow: 0rem 2px 7px var(--color5);
-
-          input {
-            padding-left: 2ch;
-            border: none;
-            width: 90%;
-            height: 90%;
-            border: none;
-            border-radius: var(--border_radius1);
-          }
-
-          input:focus {
-            outline: none;
-          }
-
-          .toggle-container {
-            width: 10%;
-            height: 100%;
-            display: inline-block;
-            border-radius: var(--border_radius1);
-            cursor: pointer;
-            border: none;
-
-            .toggle-input {
-              display: none;
-            }
-
-            .toggle-btn {
-              height: 100%;
-              width: 100%;
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-
-              svg {
-                transition: transform 0.3s ease;
-              }
-            }
-          }
-        }
-      }
-
       .left-panel {
         justify-content: space-between;
         width: 250px; /* sidebar-ын өргөн */
@@ -140,14 +57,22 @@
           .closeBtn:hover {
             color: var(--color1);
           }
+        }
+      }
 
-          .checkbox-group {
-            display: flex;
-            flex-direction: column; /* checkbox-уудыг нэг мөр болгож байрлуулна */
-            gap: 0.5rem; /* checkbox хооронд зай */
+      .category-group {
+        gap: 0.5rem; /* checkbox хооронд зай */
+
+        .category-list {
+          display: flex;
+          flex-direction: column;
+
+          .category-head {
           }
+        }
 
-          .checkbox-group label {
+        .category-main {
+          label {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -157,12 +82,12 @@
             transition: background-color 0.2s ease;
           }
 
-          .checkbox-group label:hover {
+          label:hover {
             background-color: rgba(0, 0, 0, 0.05);
           }
 
-          .checkbox-group input[type="checkbox"] {
-            accent-color: #007bff; /* checkbox өнгө */
+          input[type="checkbox"] {
+            accent-color: #007bff;
             width: 18px;
             height: 18px;
           }
@@ -175,7 +100,6 @@
 
       .right-panel {
         flex: 1;
-        /* padding: 2rem; */
       }
 
       /* .grid-layout {
@@ -301,6 +225,7 @@
     </style>
     <script type="module">
       import "../component/Header.js";
+      import "../component/SearchBar.js";
       import "../component/JobList.js";
       import "../component/JobdetailList.js";
       import "../component/Footer.js";
@@ -311,102 +236,61 @@
         const showBtn = document.querySelector(".show-sidebar-btn");
         const grid = document.querySelector(".grid-layout");
 
-        // ХААХ
         closeBtn.addEventListener("click", () => {
           sidebar.classList.add("hidden");
           grid.classList.add("full-width"); // 4 column
           showBtn.style.display = "block"; // show button appears
         });
 
-        // НЭЭХ
         showBtn.addEventListener("click", () => {
           sidebar.classList.remove("hidden");
           grid.classList.remove("full-width");
           showBtn.style.display = "none"; // hide button again
         });
-      });
 
-      document.addEventListener("show-job-detail", (e) => {
-        const dialog = document.querySelector("job-detail-list");
-        dialog.showDetail(e.detail.jobId);
+        const jobList = document.querySelector("job-list");
+
+        document.querySelector("search-bar").addEventListener("search", (e) => {
+          jobList.filter(e.detail);
+        });
+
+        document
+          .querySelector("search-bar")
+          .addEventListener("sidebar-toggle", (e) => {
+            console.log("Sidebar:", e.detail);
+          });
+
+        // const searchInput = document.querySelector('input[name="search"]');
+        // const searchButton = document.querySelector(".search-btn");
+        // const jobList = document.querySelector("job-list");
+
+        // if (!searchInput || !searchButton || !jobList) {
+        //   console.error("❌ Search input, button эсвэл job-list олдсонгүй!");
+        //   return;
+        // }
+
+        // searchButton.addEventListener("click", () => {
+        //   const value = searchInput.value.trim();
+        //   jobList.filter(value);
+        // });
+
+        // searchInput.addEventListener("keydown", (e) => {
+        //   if (e.key === "Enter") {
+        //     jobList.filter(searchInput.value.trim());
+        //   }
+        // });
       });
     </script>
   </head>
   <body>
     <div class="container">
-    <header-component></header-component>
-    <main class="main">
-      <aside class="left-panel">
-        <div class="category">
-          <div class="flex">
-            <h3>Категори</h3>
-            <button class="closeBtn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M6.225 4.811a1 1 0 0 0-1.414 1.414L10.586 12L4.81 17.775a1 1 0 1 0 1.414 1.414L12 13.414l5.775 5.775a1 1 0 0 0 1.414-1.414L13.414 12l5.775-5.775a1 1 0 0 0-1.414-1.414L12 10.586L6.225 4.81Z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="checkbox-group">
-            <label>
-              <input type="checkbox" name="category" value="it" />
-              IT / Программчлал
-            </label>
-            <label>
-              <input type="checkbox" name="category" value="marketing" />
-              Маркетинг
-            </label>
-            <label>
-              <input type="checkbox" name="category" value="management" />
-              Менежмент
-            </label>
-            <label>
-              <input type="checkbox" name="category" value="design" />
-              Дизайн
-            </label>
-            <label>
-              <input type="checkbox" name="category" value="sales" />
-              Борлуулалт
-            </label>
-            <label>
-              <input type="checkbox" name="category" value="engineering" />
-              Инженер
-            </label>
-          </div>
-        </div>
-      </aside>
-      <sidebar class="right-panel">
-        <div class="search">
-          <button class="show-sidebar-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill="currentColor"
-                d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"
-              />
-            </svg>
-          </button>
-          <div class="search-container">
-            <input
-              type="text"
-              placeholder="Хайх утга..."
-              name="search"
-              aria-label="Хайх"
-            />
-            <div class="toggle-container">
-              <input type="checkbox" id="arrowToggle" class="toggle-input" />
-              <label for="arrowToggle" class="toggle-btn">
+      <header-component></header-component>
+      <main class="main">
+        <aside class="left-panel">
+          <div class="category">
+            <div class="flex">
+              <h3>Категори</h3>
+              <button class="closeBtn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -415,17 +299,158 @@
                 >
                   <path
                     fill="currentColor"
-                    d="M10.44 3a7.44 7.44 0 1 0 4.803 13.122c-.022.271.07.55.278.757l3.84 3.84a.96.96 0 1 0 1.358-1.358l-3.84-3.84a.96.96 0 0 0-.757-.278A7.44 7.44 0 0 0 10.44 3m-6 7.44a6 6 0 1 1 12 0a6 6 0 0 1-12 0"
+                    d="M6.225 4.811a1 1 0 0 0-1.414 1.414L10.586 12L4.81 17.775a1 1 0 1 0 1.414 1.414L12 13.414l5.775 5.775a1 1 0 0 0 1.414-1.414L13.414 12l5.775-5.775a1 1 0 0 0-1.414-1.414L12 10.586L6.225 4.81Z"
                   />
                 </svg>
-              </label>
+              </button>
+            </div>
+            <div class="category-group">
+              <div class="category-list">
+                <div class="category-head">
+                  <p>Ажлын чиглэл</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="#000000"
+                  >
+                    <g fill="#000000">
+                      <path d="m15.68 7.116l-6 5l.64.768l6-5l-.64-.768Z" />
+                      <path
+                        d="m16.32 7.884l-6 5c-.512.427-1.152-.341-.64-.768l6-5c.512-.427 1.152.341.64.768Z"
+                      />
+                      <path d="m3.68 7.884l6 5l.64-.768l-6-5l-.64.768Z" />
+                      <path
+                        d="m4.32 7.116l6 5c.512.427-.128 1.195-.64.768l-6-5c-.512-.427.128-1.195.64-.768Z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <div class="category-main">
+                  <label>
+                    <input type="checkbox" name="category" value="it" />
+                    IT / Программчлал
+                  </label>
+                  <label>
+                    <input type="checkbox" name="category" value="marketing" />
+                    Маркетинг
+                  </label>
+                  <label>
+                    <input type="checkbox" name="category" value="management" />
+                    Менежмент
+                  </label>
+                  <label>
+                    <input type="checkbox" name="category" value="design" />
+                    Дизайн
+                  </label>
+                  <label>
+                    <input type="checkbox" name="category" value="sales" />
+                    Борлуулалт
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="category"
+                      value="engineering"
+                    />
+                    Инженер
+                  </label>
+                </div>
+              </div>
+              <div class="flex">
+                <p>Ажлын төрөл</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="#000000"
+                >
+                  <g fill="#000000">
+                    <path d="m15.68 7.116l-6 5l.64.768l6-5l-.64-.768Z" />
+                    <path
+                      d="m16.32 7.884l-6 5c-.512.427-1.152-.341-.64-.768l6-5c.512-.427 1.152.341.64.768Z"
+                    />
+                    <path d="m3.68 7.884l6 5l.64-.768l-6-5l-.64.768Z" />
+                    <path
+                      d="m4.32 7.116l6 5c.512.427-.128 1.195-.64.768l-6-5c-.512-.427.128-1.195.64-.768Z"
+                    />
+                  </g>
+                </svg>
+              </div>
+              <div class="flex">
+                <p>Байршил</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="#000000"
+                >
+                  <g fill="#000000">
+                    <path d="m15.68 7.116l-6 5l.64.768l6-5l-.64-.768Z" />
+                    <path
+                      d="m16.32 7.884l-6 5c-.512.427-1.152-.341-.64-.768l6-5c.512-.427 1.152.341.64.768Z"
+                    />
+                    <path d="m3.68 7.884l6 5l.64-.768l-6-5l-.64.768Z" />
+                    <path
+                      d="m4.32 7.116l6 5c.512.427-.128 1.195-.64.768l-6-5c-.512-.427.128-1.195.64-.768Z"
+                    />
+                  </g>
+                </svg>
+              </div>
+              <div class="flex">
+                <p>Хугацаа</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="#000000"
+                >
+                  <g fill="#000000">
+                    <path d="m15.68 7.116l-6 5l.64.768l6-5l-.64-.768Z" />
+                    <path
+                      d="m16.32 7.884l-6 5c-.512.427-1.152-.341-.64-.768l6-5c.512-.427 1.152.341.64.768Z"
+                    />
+                    <path d="m3.68 7.884l6 5l.64-.768l-6-5l-.64.768Z" />
+                    <path
+                      d="m4.32 7.116l6 5c.512.427-.128 1.195-.64.768l-6-5c-.512-.427.128-1.195.64-.768Z"
+                    />
+                  </g>
+                </svg>
+              </div>
+              <div class="flex">
+                <p>Цалин</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="#000000"
+                >
+                  <g fill="#000000">
+                    <path d="m15.68 7.116l-6 5l.64.768l6-5l-.64-.768Z" />
+                    <path
+                      d="m16.32 7.884l-6 5c-.512.427-1.152-.341-.64-.768l6-5c.512-.427 1.152.341.64.768Z"
+                    />
+                    <path d="m3.68 7.884l6 5l.64-.768l-6-5l-.64.768Z" />
+                    <path
+                      d="m4.32 7.116l6 5c.512.427-.128 1.195-.64.768l-6-5c-.512-.427.128-1.195.64-.768Z"
+                    />
+                  </g>
+                </svg>
+              </div>
             </div>
           </div>
-        </div>
-        <job-list></job-list>
-      </sidebar>
-    </main>
-    <footer-component></footer-component>
+        </aside>
+        <sidebar class="right-panel">
+          <search-bar></search-bar>
+          <job-list></job-list>
+        </sidebar>
+      </main>
+      <footer-component></footer-component>
     </div>
     <job-detail-list></job-detail-list>
   </body>
