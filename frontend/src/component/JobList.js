@@ -57,6 +57,9 @@ export class JobList extends HTMLElement {
         name: user.name || "",
         type: user.type || "",
         date: job.workDate || "",
+        jobtype: job.type || "",
+        salary: job.salary || "",
+        location: job.location || "",
       };
     });
 
@@ -91,6 +94,65 @@ export class JobList extends HTMLElement {
     }
 
     // Үр дүн байвал filtered-ийг харуулна
+    this.items = filtered;
+    alertBox.style.display = "none";
+  }
+
+  filterByCategories(selections) {
+    const alertBox = this.querySelector("#noResultAlert");
+
+    // selections объект undefined байж магадгүй тул default өгөх
+    selections = selections || { jobtype: [], salary: [], location: [] };
+    selections.jobtype = selections.jobtype || [];
+    selections.salary = selections.salary || [];
+    selections.location = selections.location || [];
+
+    console.log("Selections passed to filter:", selections);
+    console.log("Full job list:", this.fullList);
+
+    const filtered = this.fullList.filter((job) => {
+      let match = true;
+
+      if (selections.jobtype.length > 0) {
+        match = match && selections.jobtype.includes(job.jobType);
+        console.log("Checking jobtype:", job.jobtype, "=> match:", match);
+      }
+
+      if (selections.salary.length > 0) {
+        const inRange = selections.salary.some((range) => {
+          if (range === "0-500") return job.salary <= 500;
+          if (range === "500-1000")
+            return job.salary > 500 && job.salary <= 1000;
+          if (range === "1000+") return job.salary > 1000;
+          return false;
+        });
+        match = match && inRange;
+        console.log(
+          "Checking salary:",
+          job.salary,
+          "=> inRange:",
+          inRange,
+          "match:",
+          match
+        );
+      }
+
+      if (selections.location.length > 0) {
+        match = match && selections.location.includes(job.location);
+        console.log("Checking location:", job.location, "=> match:", match);
+      }
+
+      return match;
+    });
+
+    console.log("Filtered list:", filtered);
+
+    if (filtered.length === 0) {
+      this.items = [];
+      alertBox.style.display = "block";
+      return;
+    }
+
     this.items = filtered;
     alertBox.style.display = "none";
   }

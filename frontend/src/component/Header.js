@@ -6,7 +6,6 @@ export class HeaderComponent extends HTMLElement {
         height: 100%;
         background-color: var(--color4);
         color: var(--color6);
-        box-shadow: 0rem 2px 7px var(--color5);
       }
 
       .flex-navbar {
@@ -59,10 +58,9 @@ export class HeaderComponent extends HTMLElement {
         }
       }
       </style>
-
     <header class="header">
       <nav class="flex-navbar">
-        <img src="../images/logo.png" />
+        <img src="./images/logo.png" alt="Logo" />
         <div class="flex-navbarbottom">
           <a href="../pages/zarHarah.html">
             <div>
