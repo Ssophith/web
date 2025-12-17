@@ -3,15 +3,25 @@ export const users = [
     id: 1,
     name: "Солонго",
     type: "Хувь хүн",
-    contact: "solongo@example.com",
-    profileImg: "solongo.png"
+    age: 28,
+    gender: "Эмэгтэй",
+    contact: "99999999",
+    height: 165,
+    ability: "Хариуцлагатай, хурдан хөдөлгөөнтэй",
+    experience: "2 жил газар шорооны ажил хийсэн",
+    addition: "Ажлын хувцас, хэрэгсэлтэй",
+    profileImg: "solongo.png",
+    bankaccount: "5690000002"
   },
   {
     id: 2,
-    name: "Бат-Эрдэнэ",
+    name: "Уул, ус",
     type: "Байгууллага",
-    contact: "bat-erdene@example.com",
-    profileImg: "bat.png"
+    contact: "99999999",
+    introduction: "Барилгын дараах цэвэрлэгээ үйлчилгээ үзүүлдэг байгууллага.",
+    experience: "2 жил",
+    addition: "Ажлын хувцас, хэрэгсэлтэй",
+    profileImg: "bat.png",
+    bankaccount: "56900000002"
   },
-  // ... бусад хэрэглэгчид
 ];

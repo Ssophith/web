@@ -4,6 +4,7 @@ export const jobs = [
     userId: 1, // Солонго
     title: "Газар ухна",
     salary: "80000₮",
+    JobCategory: "Газар шороо",
     jobType: "Бүтэн цаг",
     location: "Сүхбаатар дүүрэг",
     workDate: "2025-11-02",
@@ -24,6 +25,7 @@ export const jobs = [
     userId: 1, // Солонго
     title: "Цемент зөөвөрлөх",
     salary: "90000₮",
+    JobCategory: "Барилга",
     jobType: "Бүтэн цаг",
     location: "Баянзүрх дүүрэг",
     workDate: "2025-11-05",
@@ -44,6 +46,7 @@ export const jobs = [
     userId: 2, // Бат-Эрдэнэ
     title: "Барилгын ажилтан",
     salary: "120000₮",
+    JobCategory: "Барилга",
     jobType: "Хагас өдөр",
     location: "Хан-Уул дүүрэг",
     workDate: "2025-11-10",
@@ -64,6 +67,7 @@ export const jobs = [
     userId: 2, // Бат-Эрдэнэ
     title: "Барилгын ажилтан",
     salary: "120000₮",
+    JobCategory: "Барилга",
     jobType: "Хагас өдөр",
     location: "Хан-Уул дүүрэг",
     workDate: "2025-11-10",
@@ -84,6 +88,7 @@ export const jobs = [
     userId: 2, // Бат-Эрдэнэ
     title: "Барилгын ажилтан",
     salary: "120000₮",
+    JobCategory: "Барилга",
     jobType: "Хагас өдөр",
     location: "Хан-Уул дүүрэг",
     workDate: "2025-11-10",
@@ -99,5 +104,4 @@ export const jobs = [
     transport: "Өөрөө зохицуулах",
     note: "Хүнд ажил, аюулгүй байдлыг хангах"
   },
-  // ... бусад ажлын зарууд
 ];

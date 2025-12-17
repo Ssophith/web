@@ -83,7 +83,6 @@ class ZarHarah extends HTMLElement {
       }
       </style>
         <div class="container">
-            <header-component></header-component>
                 <main class="main">
                     <aside class="left-panel">
                         <job-category></job-category>
@@ -93,7 +92,6 @@ class ZarHarah extends HTMLElement {
                         <job-list></job-list>
                     </sidebar>
                 </main>
-            <footer-component></footer-component>
         </div>
         <job-detail-list></job-detail-list>
     `;

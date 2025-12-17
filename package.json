@@ -18,8 +18,11 @@
     "url": "https://github.com/Ssophith/web/issues"
   },
   "homepage": "https://github.com/Ssophith/web#readme",
-  "description": "",
   "dependencies": {
-    "express": "^5.2.1"
-  }
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1"
+  },
+  "description": ""
 }

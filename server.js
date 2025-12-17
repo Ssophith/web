@@ -1,7 +1,8 @@
-// server.js (ES Module)
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import express from "express";
+import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
+import authRoutes from "./routes/authRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,12 +10,30 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-app.use(express.static(path.join(__dirname, 'frontend' ,'src')));
+// MongoDB холболт
+mongoose
+  .connect("mongodb://127.0.0.1:27017/jobPortal", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB холбогдлоо"))
+  .catch((err) => console.error(err));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'src', 'index.html'));
+// Body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Static files
+app.use(express.static(path.join(__dirname, "frontend", "src")));
+
+// Routes
+app.use("/auth", authRoutes);
+
+// Home page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "src", "index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
-});
+app.listen(PORT, () =>
+  console.log(`Server listening on http://localhost:${PORT}`)
+);

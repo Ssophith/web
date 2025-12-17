@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <title>Цагийн ажлын систем – Нэвтрэх / Бүртгүүлэх</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #fff;
+      width: 360px;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 10px;
+      color: #2563eb;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2 id="title">Нэвтрэх</h2>
+
+    <form id="authForm">
+      <div id="registerFields" class="hidden">
+        <input type="text" id="name" placeholder="Нэр" />
+        <select id="type">
+          <option value="Хувь хүн">Хувь хүн</option>
+          <option value="Байгууллага">Байгууллага</option>
+        </select>
+      </div>
+
+      <input type="text" id="contact" placeholder="Утасны дугаар" required />
+      <input type="password" id="password" placeholder="Нууц үг" required />
+
+      <button type="submit">Нэвтрэх</button>
+    </form>
+
+    <div class="toggle" id="toggleBtn">Бүртгүүлэх</div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const title = document.getElementById('title');
+    const registerFields = document.getElementById('registerFields');
+    const form = document.getElementById('authForm');
+    const button = form.querySelector('button');
+
+    let isLogin = true;
+
+    toggleBtn.addEventListener('click', () => {
+      isLogin = !isLogin;
+      title.textContent = isLogin ? 'Нэвтрэх' : 'Бүртгүүлэх';
+      button.textContent = isLogin ? 'Нэвтрэх' : 'Бүртгүүлэх';
+      toggleBtn.textContent = isLogin ? 'Бүртгүүлэх' : 'Нэвтрэх';
+      registerFields.classList.toggle('hidden');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById('name').value,
+        type: document.getElementById('type').value,
+        contact: document.getElementById('contact').value,
+        password: document.getElementById('password').value
+      };
+
+      if (isLogin) {
+        console.log('LOGIN DATA:', {
+          contact: data.contact,
+          password: data.password
+        });
+        alert('Нэвтрэх хүсэлт илгээгдлээ (console харна уу)');
+      } else {
+        console.log('REGISTER DATA:', data);
+        alert('Бүртгүүлэх хүсэлт илгээгдлээ (console харна уу)');
+      }
+    });
+  </script>
+
+</body>
+</html>
