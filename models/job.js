@@ -1,8 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const jobSchema = new mongoose.Schema({
-  id: Number,
-  userId: Number,
+const JobSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   title: String,
   salary: String,
   JobCategory: String,
@@ -22,5 +24,4 @@ const jobSchema = new mongoose.Schema({
   note: String
 });
 
-const Job = mongoose.model('Job', jobSchema);
-export default Job;
+export default mongoose.model("Job", JobSchema);

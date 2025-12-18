@@ -1,9 +1,7 @@
 import "./JobCard.js";
-import { jobs } from "../data/jobs.js";
-import { users } from "../data/users.js";
 
 export class JobList extends HTMLElement {
-  connectedCallback() {
+ async connectedCallback() {
     this.innerHTML = `
       <style>
         .alert {
@@ -50,21 +48,26 @@ export class JobList extends HTMLElement {
               `;
 
     // 1. job + user data-г нэгтгэх
-    const merged = jobs.map((job) => {
-      const user = users.find((u) => u.id === job.userId) || {};
-      return {
-        ...job,
-        name: user.name || "",
-        type: user.type || "",
-        date: job.workDate || "",
-        jobtype: job.type || "",
-        salary: job.salary || "",
-        location: job.location || "",
-      };
-    });
+    try {
+      const res = await fetch("/api/jobs");
+      const data = await res.json();
 
-    this.fullList = merged; // ← бүх өгөгдлийг хадгална
-    this.items = merged; // ← дэлгэц дээр харуулах
+      const merged = data.map((job) => ({
+        id: job._id,
+        title: job.title,
+        workDate: job.workDate,
+        workTime: job.workTime,
+        location: job.location,
+        salary: job.salary,
+        name: job.userId?.name || "",
+        type: job.userId?.type || "",
+      }));
+
+      this.fullList = merged;
+      this.items = merged;
+    } catch (err) {
+      console.error("Failed to load jobs:", err);
+    }
   }
 
   filter(query) {

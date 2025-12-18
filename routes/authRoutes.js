@@ -1,44 +1,57 @@
-import express from 'express';
-import User from '../models/user.js';
-import bcrypt from 'bcryptjs';
+import express from "express";
+import bcrypt from "bcryptjs";
+import User from "../models/User.js";
 
 const router = express.Router();
 
-// Sign up
-router.post('/signup', async (req, res) => {
-  try {
-    const { name, type, phone, password } = req.body;
+/* =====================
+   REGISTER
+===================== */
+router.post("/register", async (req, res) => {
+  const { name, phone, password, type } = req.body;
 
-    const existingUser = await User.findOne({ phone });
-    if (existingUser) return res.status(400).json({ error: 'Дугаар аль хэдийн бүртгэлтэй байна' });
-
-    // Password hash
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({ name, type, phone, password: hashedPassword});
-    await newUser.save();
-
-    res.json({ message: 'Бүртгэл амжилттай' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  const existingUser = await User.findOne({ phone });
+  if (existingUser) {
+    return res.status(400).json({ message: "Утасны дугаар бүртгэлтэй байна" });
   }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const user = await User.create({
+    name,
+    phone,
+    password: hashedPassword,
+    type
+  });
+
+  res.json({ message: "Амжилттай бүртгэгдлээ" });
 });
 
-// Login
-router.post('/login', async (req, res) => {
-  try {
-    const { phone, password } = req.body;
+/* =====================
+   LOGIN
+===================== */
+router.post("/login", async (req, res) => {
+  const { phone, password } = req.body;
 
-    const user = await User.findOne({ phone });
-    if (!user) return res.status(400).json({ error: 'Дугаар эсвэл нууц үг буруу' });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: 'Дугаар эсвэл нууц үг буруу' });
-
-    res.json({ message: 'Амжилттай нэвтэрлээ', user });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  const user = await User.findOne({ phone });
+  if (!user) {
+    return res.status(400).json({ message: "Хэрэглэгч олдсонгүй" });
   }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: "Нууц үг буруу" });
+  }
+
+  res.json({
+    message: "Login амжилттай",
+    user: {
+      id: user._id,
+      name: user.name,
+      phone: user.phone,
+      type: user.type
+    }
+  });
 });
 
 export default router;

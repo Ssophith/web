@@ -6,7 +6,7 @@ import "./pages/ZarHarah.js";
 // import "../pages/profile.html";
 // import ".../pages/login.html";
 
-export class Router extends HTMLElement {
+export class PageRouter extends HTMLElement {
   connectedCallback() {
     this._views = Array.from(this.querySelectorAll("[data-route]"));
     window.addEventListener("hashchange", () => this.applyRoute());
@@ -32,7 +32,6 @@ export class Router extends HTMLElement {
       }
     });
 
-    // Top menu-д идэвхтэй линк update
     const links = document.querySelectorAll(".top-menu a");
     links.forEach((a) => {
       a.classList.toggle(
@@ -47,4 +46,4 @@ export class Router extends HTMLElement {
   }
 }
 
-customElements.define("router", Router);
+customElements.define("page-router", PageRouter);

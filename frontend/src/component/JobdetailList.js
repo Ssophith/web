@@ -1,9 +1,7 @@
 import "./JobDetails.js";
-import { jobs } from "../data/jobs.js";
-import { users } from "../data/users.js";
 
 export class JobDetailList extends HTMLElement {
-  connectedCallback() {
+  async connectedCallback() {
     this.innerHTML = `
     <style>
       dialog {
@@ -32,6 +30,7 @@ export class JobDetailList extends HTMLElement {
       this.showDetail(e.detail.jobId);
     });
 
+
     // Dialog хаагдах үед scroll lock арилгах
     this.dialog.addEventListener("close", () => {
       document.body.style.overflow = "";
@@ -40,53 +39,56 @@ export class JobDetailList extends HTMLElement {
     });
   }
 
-  showDetail(jobId) {
-    const job = jobs.find((j) => j.id == jobId);
-    const user = users.find((u) => u.id == job.userId) || {};
+  async showDetail(jobId) {
+    try {
+      const res = await fetch(`/api/jobs/${jobId}`);
+      if (!res.ok) throw new Error("Job not found");
+      const job = await res.json();
 
-    const item = {
-      ...job,
-      name: user.name || "",
-      type: user.type || "",
-      date: job.workDate || "",
-    };
+      console.log("jobId:", jobId);
 
-    const html = `
+      const item = {
+        ...job,
+        name: job.userId?.name || "",
+        type: job.userId?.type || "",
+        date: job.workDate || "",
+      };
+
+      const html = `
       <job-detail 
         name="${item.name}"
         type="${item.type}"
         date="${item.date}"
-
         title="${item.title}"
         salary="${item.salary}"
         jobType="${item.jobType}"
         location="${item.location}"
         workdate="${item.workDate}"
         worktime="${item.workTime}"
-
-        requiredworker="${item.requiredworker}"
-        gettingworker="${item.gettingworker}"
-
+        requiredworker="${item.requiredWorkers}"
+        gettingworker="${item.hiredWorkers}"
         age="${item.age}"
         gender="${item.gender}"
-        exp="${item.exp}"
+        exp="${item.experience}"
         clothes="${item.clothes}"
         otherRequirements="${item.otherRequirements}"
-
         food="${item.food}"
         transport="${item.transport}"
         note="${item.note}"
       ></job-detail>
-  `;
+    `;
 
-    this.querySelector("#dialog-body").innerHTML = html;
+      this.querySelector("#dialog-body").innerHTML = html;
 
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = "hidden";
-    document.body.style.paddingRight = scrollbarWidth + "px";
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = scrollbarWidth + "px";
 
-    this.dialog.showModal();
+      this.dialog.showModal();
+    } catch (err) {
+      console.error("Failed to load job detail:", err);
+    }
   }
 }
 
