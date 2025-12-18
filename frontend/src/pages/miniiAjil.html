@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniiAjil</title>
+    <link rel="stylesheet" href="../styles/GlobalStyles.css">
+    <style>
+        .container {
+            display: grid;
+            min-height: 100vh;
+            font-family: var(--font1);
+            background-color: var(--color3);
+            margin: 0;
+            padding: 0;
+
+            grid-template-areas:
+            "header"
+            "main"
+            "footer";
+
+            grid-template-rows: 8vh 1fr 35vh;
+        }
+        header-component{
+            grid-area: header;
+        }
+        footer-component{
+            grid-area: footer;
+        }
+
+        .main {
+            grid-area: main;
+            padding: 1rem;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            justify-items: center;
+            overflow: visible;
+            gap: 1rem;
+        }
+
+        .button {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            cursor: pointer;
+            color: var(--color2);
+            border-radius: 50%;
+            background-color: var(--color3);
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color2);
+            box-shadow: 2px 2px 3px var(--color2);
+            transition: all 0.2s ease;
+            z-index: 1;
+        }
+
+        .button:hover{
+            transform: scale(1.05);
+            box-shadow: 3px 3px 4px var(--color1);
+            border:2px solid var(--color2);
+            transform-origin: center;
+            z-index: 10;
+        }
+
+        .grid-layout{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-items: center;
+            justify-content: space-evenly;
+        }
+
+        .flex{
+            display:flex;
+        }
+
+        .card {
+            width: 25vw;
+            height: auto;
+            margin: 2rem;
+            padding: 2rem;
+            padding-right: 1rem;
+            background-color: var(--color4);
+            border-radius: var(--border_radius1);
+            box-shadow: 0rem 2px 7px var(--color2);
+            transition: all 0.2s ease;
+            display: grid;
+            grid-template-columns: 7fr 1fr;
+            gap: 1rem;
+            overflow: visible;
+
+            h2 {
+            font-size: var(--fontsize1);
+            text-align: center;
+            }
+
+            .flex-nav {
+            display: flex;
+            gap: 1rem;
+            font-size: var(--fontsize4);
+            width: 100%;
+
+            .flex-nav-title {
+                display: flex;
+                justify-content: space-between;
+            }
+            }
+
+            .info {
+            margin: 0;
+            height: auto;
+            padding: 1rem;
+            font-size: var(--fontsize2);
+            background-color: var(--color2);
+            border-radius: var(--border_radius1);
+            color: var(--color4);
+
+            .info-date{
+                display: flex;
+                justify-content: space-between;
+            }
+            }
+        }
+
+        .card:hover{
+            box-shadow: 0rem 4px 10px var(--color1);
+            transform: scale(1.02);
+        }
+
+        .card-inactive {
+            width: 25vw;
+            height: auto;
+            margin: 2rem;
+            padding: 2rem;
+            background-color: var(--color4);
+            border-radius: var(--border_radius1);
+            box-shadow: 0rem 2px 7px var(--color6);
+            transition: all 0.2s ease;
+            display: grid;
+            gap: 1rem;
+            overflow: visble;
+
+            h2 {
+            font-size: var(--fontsize1);
+            text-align: center;
+            }
+
+            .flex-nav {
+            display: flex;
+            gap: 1rem;
+            font-size: var(--fontsize3);
+
+            .flex-nav-title {
+                display: flex;
+                justify-content: space-between;
+            }
+            }
+
+            .info-inactive {
+            margin: 0;
+            height: auto;
+            padding: 1rem;
+            font-size: var(--fontsize2);
+            background-color: var(--color3);
+            border-radius: var(--border_radius1);
+            color: var(--color6);
+            border: 1px solid var(--color5);
+            }
+        }
+
+        .card-inactive:hover{
+            box-shadow: 0rem 4px 10px var(--color1);
+            transform: scale(1.02);
+        }
+
+        .card-inactive:hover .info-inactive{
+            border: 1px solid var(--color2);
+            background-color: var(--color3);
+            color: var(--color6);
+        }
+    </style>
+    <script type="module">
+        import "../component/Header.js"
+        import "../component/Footer.js"
+    </script>
+</head>
+<body class="container">
+    <header-component></header-component>
+    <main class="main">
+        <section>
+            <h2>Баталгаажуулсан</h2>
+            <div class="grid-layout">
+            <article class="card">
+              <div>
+                <div class="flex-nav">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                      <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                    </g>
+                  </svg>
+                  <div>
+                    <div class="flex-nav-title">
+                      <p>Солонго</p>
+                      <p>Хувь хүн</p>
+                    </div>
+                    <div>
+                      <p>Нийтэлсэн хугацаа: 2025-11-02</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h2>Газар ухна</h2>
+                </div>
+                <div class="info">
+                  <div class="info-date">
+                    <p>2025-11-08</p>
+                    <p>09:00 - 20:00<p>
+                  </div>
+                  <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                      d="M12 3a7 7 0 0 0-7 7c0 2.862 1.782 5.623 3.738 7.762A26.158 26.158 0 0 0 12 20.758a26.14 26.14 0 0 0 3.262-2.994C17.218 15.623 19 12.863 19 10a7 7 0 0 0-7-7Zm0 20.214l-.567-.39l-.003-.002l-.006-.005l-.02-.014l-.075-.053a25.34 25.34 0 0 1-1.214-.94a28.157 28.157 0 0 1-2.853-2.698C5.218 16.876 3 13.637 3 10a9 9 0 0 1 18 0c0 3.637-2.218 6.877-4.262 9.112a28.145 28.145 0 0 1-3.796 3.44a16.794 16.794 0 0 1-.345.251l-.021.014l-.006.005l-.002.001l-.568.39ZM12 8a2 2 0 1 0 0 4a2 2 0 0 0 0-4Zm-4 2a4 4 0 1 1 8 0a4 4 0 0 1-8 0Z"/>
+                  </svg>
+                  <p>Сүхбаатар дүүрэг</p>
+                  <p>90000₮</p>
+                  </div>
+                </div>
+              </div>
+              <div class="buttons">
+                <div class="button">
+                    <svg height="30" width="30" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M512 0C229.232 0 0 229.232 0 512c0 282.784 229.232 512 512 512c282.784 0 512-229.216 512-512C1024 229.232 794.784 0 512 0zm0 961.008c-247.024 0-448-201.984-448-449.01c0-247.024 200.976-448 448-448s448 200.977 448 448s-200.976 449.01-448 449.01zm32-462V192.002c0-17.664-14.336-32-32-32s-32 14.336-32 32v320c0 9.056 3.792 17.2 9.856 23.007c.529.624.96 1.296 1.537 1.887l158.384 158.4c12.496 12.481 32.752 12.481 45.248 0c12.496-12.496 12.496-32.768 0-45.264z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="button">
+                    <svg height="30" width="30" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.5 14c2.49 0 4.5-1 4.5-2.5V2c0-1-2-2-4.5-2S7 1 7 2v3.5c1.17.49 2.17 1.31 2.88 2.35c.49.096 1.03.149 1.62.149c1.31 0 2.4-.261 3.18-.686a4 4 0 0 0 .323-.198v1.38c0 .235-.187.6-.802.936c-.596.325-1.51.564-2.7.564q-.357 0-.68-.027q.12.495.16 1.01q.253.014.52.014c1.31 0 2.4-.261 3.18-.686a4 4 0 0 0 .323-.198v1.38c0 .236-.149.586-.791.932c-.632.34-1.58.568-2.71.568q-.345 0-.668-.028a6.4 6.4 0 0 1-.309.974q.472.053.976.053zm2.7-7.56c.615-.336.802-.701.802-.936v-1.38q-.155.106-.323.198c-.778.425-1.87.686-3.18.686s-2.4-.261-3.18-.686a4 4 0 0 1-.323-.198v1.38c0 .235.187.6.802.935c.596.325 1.51.564 2.7.564s2.1-.239 2.7-.564zM8 2.5c0-.288.125-.565.358-.734c.127-.092.265-.184.374-.234c.273-.126 1.64-.533 2.77-.533s2.11.227 2.77.533c.124.057.261.146.382.234c.231.167.35.442.35.727v.006c0 .235-.187.6-.802.936c-.596.325-1.51.564-2.7.564s-2.1-.24-2.7-.564C8.187 3.1 8 2.734 8 2.5" fill="currentColor" fillRule="evenodd"/>
+                        <path d="M9 11.5C9 13.99 6.99 16 4.5 16S0 13.99 0 11.5S2.01 7 4.5 7S9 9.01 9 11.5m-1 0C8 13.43 6.43 15 4.5 15S1 13.43 1 11.5S2.57 8 4.5 8S8 9.57 8 11.5" fill="currentColor" fillRule="evenodd"/>
+                    </svg>
+                </div>
+                <div class="button">
+                    <svg height="200" width="200" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m15.5 15.5l-10-10zm0-10l-10 10" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section>
+            <h2>Бүртгүүлсэн</h2>
+            <div class="grid-layout">
+            <article class="card-inactive">
+                <div class="flex-nav">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                      <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                    </g>
+                  </svg>
+                  <div>
+                    <div class="flex-nav-title">
+                      <p>Солонго</p>
+                      <p>Хувь хүн</p>
+                    </div>
+                    <div>
+                      <p>Нийтэлсэн хугацаа: 2025-11-02</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h2>Газар ухна</h2>
+                </div>
+                <div class="info-inactive">
+                  <div class="info-date">
+                    <p>2025-11-08</p>
+                    <p>09:00 - 20:00<p>
+                  </div>
+                  <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                      d="M12 3a7 7 0 0 0-7 7c0 2.862 1.782 5.623 3.738 7.762A26.158 26.158 0 0 0 12 20.758a26.14 26.14 0 0 0 3.262-2.994C17.218 15.623 19 12.863 19 10a7 7 0 0 0-7-7Zm0 20.214l-.567-.39l-.003-.002l-.006-.005l-.02-.014l-.075-.053a25.34 25.34 0 0 1-1.214-.94a28.157 28.157 0 0 1-2.853-2.698C5.218 16.876 3 13.637 3 10a9 9 0 0 1 18 0c0 3.637-2.218 6.877-4.262 9.112a28.145 28.145 0 0 1-3.796 3.44a16.794 16.794 0 0 1-.345.251l-.021.014l-.006.005l-.002.001l-.568.39ZM12 8a2 2 0 1 0 0 4a2 2 0 0 0 0-4Zm-4 2a4 4 0 1 1 8 0a4 4 0 0 1-8 0Z"/>
+                  </svg>
+                  <p>Сүхбаатар дүүрэг</p>
+                  <p>90000₮</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+    </main>
+    <footer-component></footer-component>
+</body>
+</html>
