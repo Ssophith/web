@@ -10,14 +10,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-// MongoDB холболт
-mongoose
-  .connect("mongodb://127.0.0.1:27017/jobPortal", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB холбогдлоо"))
-  .catch((err) => console.error(err));
+mongoose.connect('mongodb://localhost:27017/mydb')
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error(err));
+
 
 // Body parser
 app.use(express.json());

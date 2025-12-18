@@ -151,6 +151,7 @@ export class JobCard extends HTMLElement {
     const btn = this.querySelector(".details-btn");
     btn.addEventListener("click", () => {
       const jobId = this.getAttribute("jobId");
+      location.hash = "home/info";
 
       this.dispatchEvent(
         new CustomEvent("show-job-detail", {

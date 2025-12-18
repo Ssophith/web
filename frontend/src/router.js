@@ -1,45 +1,50 @@
-export function router() {
-  const app = document.getElementById("app");
-  
-  // Хэрэглэгч нэвтэрсэн эсэхийг localStorage-аас шалгах
-  // const user = JSON.parse(localStorage.getItem('user'));
+import "./component/Header.js";
+import "./component/Footer.js";
+import "./pages/ZarHarah.js";
+// import "../pages/miniiZar.html";
+// import "../pages/miniiAjil.html";
+// import "../pages/profile.html";
+// import ".../pages/login.html";
 
-  // Хэрвээ login хийгээгүй бол login page руу чиглүүлэх
-  // if (!user && window.location.hash !== "#login") {
-  //   window.location.hash = "#login";
-  //   return;
-  // }
+export class Router extends HTMLElement {
+  connectedCallback() {
+    this._views = Array.from(this.querySelectorAll("[data-route]"));
+    window.addEventListener("hashchange", () => this.applyRoute());
+    this.applyRoute();
+  }
 
-  // default hash
-  // if (!window.location.hash) {
-  //   window.location.hash = "#home";
-  //   return;
-  // }
+  applyRoute() {
+    let hash = (location.hash || "#home").replace("#", "");
 
-  const hash = window.location.hash;
+    // hash == "home/info" бол home section дотор info-г харуулна
+    let [mainRoute, subRoute] = hash.split("/");
 
-  switch (hash) {
-    case "#home":
-      app.innerHTML = `<zar-harah></zar-harah>`;
-      break;
+    this._views.forEach((section) => {
+      if (section.dataset.route === mainRoute) {
+        section.hidden = false;
 
-    case "#miniiZar":
-      app.innerHTML = `<minii-zar></minii-zar>`;
-      break;
+        const infoDiv = section.querySelector(".job-info");
+        if (infoDiv) {
+          infoDiv.hidden = subRoute !== "info";
+        }
+      } else {
+        section.hidden = true;
+      }
+    });
 
-    case "#miniiAjil":
-      app.innerHTML = `<minii-ajil></minii-ajil>`;
-      break;
+    // Top menu-д идэвхтэй линк update
+    const links = document.querySelectorAll(".top-menu a");
+    links.forEach((a) => {
+      a.classList.toggle(
+        "is-active",
+        a.getAttribute("href") === `#${mainRoute}`
+      );
+    });
 
-    case "#profile":
-      app.innerHTML = `<profile-page></profile-page>`;
-      break;
-
-    case "#login":
-      app.innerHTML = `<auth-page></auth-page>`; // login / sign up page
-      break;
-
-    default:
-      app.innerHTML = `<zar-harah></zar-harah>`;
+    if (!location.hash) {
+      history.replaceState(null, "", "#home");
+    }
   }
 }
+
+customElements.define("router", Router);

@@ -1,32 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zajil</title>
-  <link rel="stylesheet" href="styles/GlobalStyles.css" />
-  <script type="module">
-  import "./component/Header.js";
-  import "./component/Footer.js";
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zajil</title>
+    <link rel="stylesheet" href="styles/GlobalStyles.css" />
+    <script type="module">
+      import "./component/Header.js";
+      import "./component/Footer.js";
 
-  import "./component/ZarHarah.js";
-  import "./component/MiniiZar.js";
-  import "./component/MiniiAjil.js";
-  import "./component/ProfilePage.js";
+      import "./pages/ZarHarah.js";
+      // import "./pages/miniiZar.html";
+      // import "./pages/miniiAjil.html";
+      // import "./pages/profile.html";
+      import { Router } from "./router.js";
 
-  import { router } from "./router.js";
+  function updateActiveLink() {
+    const hash = location.hash || '#home';
 
-  window.addEventListener("DOMContentLoaded", router);
-  window.addEventListener("hashchange", router);
-</script>
+    document.querySelectorAll('.top-menu a').forEach(a => {
+      const href = a.getAttribute('href');
+      a.classList.toggle('is-active', href === hash);
+    });
 
-</head>
-<body>
-  <header-component></header-component>
+    if (!location.hash) {
+      history.replaceState(null, '', '#home');
+    }
+  }
 
-  <div id="app"></div>
+  window.addEventListener('hashchange', updateActiveLink);
+  document.addEventListener('DOMContentLoaded', updateActiveLink);
+    </script>
+  </head>
+  <body>
+    <main>
+      <router>
+        <section data-route="home">
+          <zar-harah></zar-harah>
+        </section>
 
-  <footer-component></footer-component>
-</body>
+        <section data-route="zar" hidden>
+          <minii-zar></minii-zar>
+        </section>
 
+        <section data-route="job" hidden>
+          <minii-ajil></minii-ajil>
+        </section>
+
+        <section data-route="profile" hidden>
+          <profile-page></profile-page>
+        </section>
+
+        <section data-route="login" hidden>
+          <login-page></login-page>
+        </section>
+      </router>
+    </main>
+  </body>
 </html>

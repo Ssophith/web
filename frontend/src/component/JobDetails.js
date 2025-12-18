@@ -186,6 +186,7 @@ export class JobDetail extends HTMLElement {
 
     const closeBtn = this.querySelector("#closeDialog");
     closeBtn?.addEventListener("click", () => {
+      location.hash = "home";
       const dialog = this.closest("dialog");
       if (dialog) dialog.close();
     });
