@@ -22,6 +22,34 @@ export class JobForm extends HTMLElement {
             max-width: 800px;
             width: 100%;
             margin: 0 auto;
+            position: relative;
+          }
+
+          .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: #f3f4f6;
+            color: #333;
+            border: 1.5px solid #d0d7de;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+            text-decoration: none;
+          }
+
+          .back-button:hover {
+            background-color: #e5e7eb;
+            border-color: #9ca3af;
+            transform: translateX(-2px);
+          }
+
+          .back-button svg {
+            width: 20px;
+            height: 20px;
           }
   
           h1 {
@@ -123,6 +151,13 @@ export class JobForm extends HTMLElement {
         </style>
   
         <div class="container">
+          <button class="back-button" id="back-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Буцах
+          </button>
+          
           <h1>Ажилтан Авах Зар Нэмэх</h1>
   
           <form>
@@ -216,6 +251,7 @@ export class JobForm extends HTMLElement {
   
       this.initEvents();
       this.initFormSubmit();
+      this.initBackButton();
     }
   
     initEvents() {
@@ -238,6 +274,16 @@ export class JobForm extends HTMLElement {
       }
     }
   
+    initBackButton() {
+      const backBtn = this.querySelector("#back-btn");
+      if (backBtn) {
+        backBtn.addEventListener("click", () => {
+          // #zar route руу шилжих
+          window.location.hash = "#zar";
+        });
+      }
+    }
+
     initFormSubmit() {
       const form = this.querySelector("form");
       if (form) {
