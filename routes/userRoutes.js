@@ -38,4 +38,45 @@ router.post("/login", async (req, res) => {
   res.json({ message: "Амжилттай нэвтэрлээ", user });
 });
 
+// GET /api/users/:id - Нэг хэрэглэгчийн мэдээлэл авах
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "Хэрэглэгч олдсонгүй" });
+    }
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// PUT /api/users/:id - Хэрэглэгчийн мэдээлэл засах
+router.put("/:id", async (req, res) => {
+  try {
+    const { name, type, age, gender, height, introduction, experience, addition, bankaccount } = req.body;
+    
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "Хэрэглэгч олдсонгүй" });
+    }
+
+    // Зөвхөн өөрчлөгдсөн талбаруудыг шинэчлэх
+    if (name !== undefined) user.name = name;
+    if (type !== undefined) user.type = type;
+    if (age !== undefined) user.age = age;
+    if (gender !== undefined) user.gender = gender;
+    if (height !== undefined) user.height = height;
+    if (introduction !== undefined) user.introduction = introduction;
+    if (experience !== undefined) user.experience = experience;
+    if (addition !== undefined) user.addition = addition;
+    if (bankaccount !== undefined) user.bankaccount = bankaccount;
+
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;

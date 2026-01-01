@@ -121,7 +121,7 @@ export class HeaderComponent extends HTMLElement {
               <p>Миний ажил</p>
             </div>
           </a>
-          <a href="#profile">
+          <a href="#profile" id="profile-link">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -171,6 +171,20 @@ export class HeaderComponent extends HTMLElement {
       </nav>
     </header>
     `;
+    
+    // Profile link-ийг одоогийн хэрэглэгчийн ID-тэй холбох
+    this.updateProfileLink();
+  }
+
+  updateProfileLink() {
+    const profileLink = this.querySelector("#profile-link");
+    if (profileLink) {
+      const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
+      const userId = currentUser.id || currentUser._id;
+      if (userId) {
+        profileLink.setAttribute("href", `#profile/${userId}`);
+      }
+    }
   }
 }
 
