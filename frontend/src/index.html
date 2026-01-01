@@ -11,26 +11,15 @@
 
       import "./pages/ZarHarah.js";
       import "./component/Login.js";
-      import "./pages/Profile.js";
+      import "./component/Profile.js";
       // import "./pages/miniiZar.html";
       // import "./pages/miniiAjil.html";
       import { PageRouter } from "./router.js";
-
-  function updateActiveLink() {
-  const hash = location.hash.substring(1) || 'home'; // #login → login
-
-  document.querySelectorAll('router > section').forEach(section => {
-    section.hidden = section.dataset.route !== hash;
-  });
-}
-
-  window.addEventListener('hashchange', updateActiveLink);
-  document.addEventListener('DOMContentLoaded', updateActiveLink);
     </script>
   </head>
   <body>
     <main>
-      <router>
+      <page-router>
         <section data-route="home">
           <zar-harah></zar-harah>
         </section>
@@ -50,7 +39,7 @@
         <section data-route="login" hidden>
           <login-page></login-page>
         </section>
-      </router>
+      </page-router>
     </main>
   </body>
 </html>

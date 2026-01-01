@@ -1,5 +1,5 @@
-import "../component/Header.js";
-import "../component/Footer.js";
+import "./Header.js";
+import "./Footer.js";
 
 export class ProfilePage extends HTMLElement {
   async connectedCallback() {
