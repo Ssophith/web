@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medegdel</title>
+    <link rel="stylesheet" href="../styles/GlobalStyles.css">
+    <style>
+        .container{
+            font-family: var(--font1)
+        }
+        .main{
+            margin: 1rem;
+        }
+
+        .flex-nav{
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            justify-content: space-between;
+            background-color: var(--color3);
+            padding: 1rem;
+            border-radius: var(--border_radius1);
+            transition: all 0.2s ease;
+            border: 2px solid var(--color5) ;
+        }
+
+        .flex-nav:hover{
+            transform: translateX(10px);
+        }
+
+        .button-accept{
+            display: flex;
+            color: var(--color4);
+            border-radius: 1rem;
+            padding: 0.5rem;
+            border: var(--bordersize1) solid var(--color6);
+            background-color: var(--color1);
+            transition: all 0.2s ease;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button-accept:hover{
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .button-reject{
+            display: flex;
+            color: var(--color6);
+            border-radius: 1rem;
+            padding: 0.5rem;
+            border: var(--bordersize1) solid var(--color6);
+            background-color: var(--color4);
+            transition: all 0.2s ease;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button-reject:hover{
+            transform: scale(1.1);       
+            z-index: 10;
+        }
+
+        .flex-button{
+            display: flex;
+            gap: 1rem;
+        }
+
+        .info-person{
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nots{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body class="container">
+    <header></header>
+    <main class="main">
+        <section class="start">
+            <h2>Ажил эхлүүлэх хүсэлт</h2>
+            <div class="nots">
+                <div class="flex-nav">
+                    <div class="info-person">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                            <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                            </g>
+                        </svg>
+                        <p>Нэр: Буянаа</p>
+                        <p>Нас: 20-25</p>
+                        <p>Хүйс: Эр</p>
+                        <p>Утасны дугаар: 8998-4300</p>
+                    </div>
+                    <div class="flex-button">
+                        <div class="button-accept">
+                            Зөвшөөрөх
+                        </div>
+                        <div class="button-reject">
+                            Татгалзах
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-nav">
+                    <div class="info-person">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                            <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                            </g>
+                        </svg>
+                        <p>Нэр: Буянаа</p>
+                        <p>Нас: 20-25</p>
+                        <p>Хүйс: Эр</p>
+                        <p>Утасны дугаар: 8998-4300</p>
+                    </div>
+                    <div class="flex-button">
+                        <div class="button-accept">
+                            Зөвшөөрөх
+                        </div>
+                        <div class="button-reject">
+                            Татгалзах
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-nav">
+                    <div class="info-person">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                            <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                            </g>
+                        </svg>
+                        <p>Нэр: Буянаа</p>
+                        <p>Нас: 20-25</p>
+                        <p>Хүйс: Эр</p>
+                        <p>Утасны дугаар: 8998-4300</p>
+                    </div>
+                    <div class="flex-button">
+                        <div class="button-accept">
+                            Зөвшөөрөх
+                        </div>
+                        <div class="button-reject">
+                            Татгалзах
+                        </div>
+                    </div>
+                </div>
+            <div>
+        </section>
+        <section class="salary">
+            <h2>Цалин авах хүсэлт</h2>
+            <div class="nots">
+                <div class="flex-nav">
+                    <div class="info-person">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                            <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                            </g>
+                        </svg>
+                        <p>Нэр: Буянаа</p>
+                        <p>Нас: 20-25</p>
+                        <p>Хүйс: Эр</p>
+                        <p>Утасны дугаар: 8998-4300</p>
+                    </div>
+                    <div class="flex-button">
+                        <div class="button-accept">
+                            Зөвшөөрөх
+                        </div>
+                        <div class="button-reject">
+                            Татгалзах
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-nav">
+                    <div class="info-person">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                            <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                            </g>
+                        </svg>
+                        <p>Нэр: Буянаа</p>
+                        <p>Нас: 20-25</p>
+                        <p>Хүйс: Эр</p>
+                        <p>Утасны дугаар: 8998-4300</p>
+                    </div>
+                    <div class="flex-button">
+                        <div class="button-accept">
+                            Зөвшөөрөх
+                        </div>
+                        <div class="button-reject">
+                            Татгалзах
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="">
+            <h2>Ажилд бүртгүүлэх хүсэлт</h2>
+            <div class="nots">
+                <div class="flex-nav">
+                    <div class="info-person">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                            <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                            </g>
+                        </svg>
+                        <p>Нэр: Буянаа</p>
+                        <p>Нас: 20-25</p>
+                        <p>Хүйс: Эр</p>
+                        <p>Утасны дугаар: 8998-4300</p>
+                    </div>
+                    <div class="flex-button">
+                        <div class="button-accept">
+                            Зөвшөөрөх
+                        </div>
+                        <div class="button-reject">
+                            Татгалзах
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-nav">
+                    <div class="info-person">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/>
+                            <path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/>
+                            </g>
+                        </svg>
+                        <p>Нэр: Буянаа</p>
+                        <p>Нас: 20-25</p>
+                        <p>Хүйс: Эр</p>
+                        <p>Утасны дугаар: 8998-4300</p>
+                    </div>
+                    <div class="flex-button">
+                        <div class="button-accept">
+                            Зөвшөөрөх
+                        </div>
+                        <div class="button-reject">
+                            Татгалзах
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>
