@@ -294,28 +294,44 @@ export class JobForm extends HTMLElement {
       }
     }
   
-    handleSubmit() {
-      const formData = {
-        title: this.querySelector("#job-name")?.value,
-        salary: this.querySelector("#salary")?.value,
-        jobType: this.querySelector("#job-type")?.value,
-        location: this.querySelector("#location")?.value,
-        workDate: this.querySelector("#start-date")?.value,
-        workTime: this.querySelector("#work-hours")?.value,
-        phone: this.querySelector("#phone")?.value,
-        requiredWorkers: parseInt(this.querySelector("#num-employees")?.value),
-        requirements: this.querySelector("#requirements")?.value,
-        meal: this.querySelector("#meal")?.checked,
-        mealDetails: this.querySelector("#meal-details input")?.value,
-        transport: this.querySelector("#transport")?.checked,
-        transportDetails: this.querySelector("#transport-details input")?.value,
-        additionalNotes: this.querySelector("#additional-notes")?.value,
-      };
-  
-      console.log("Form data:", formData);
-      // Энд API руу илгээх код нэмэх боломжтой
-      // await fetch("/api/jobs", { method: "POST", body: JSON.stringify(formData) });
-    }
+async handleSubmit() {
+  const formData = {
+    title: this.querySelector("#job-name")?.value,
+    salary: this.querySelector("#salary")?.value,
+    jobType: this.querySelector("#job-type")?.value,
+    location: this.querySelector("#location")?.value,
+    workDate: this.querySelector("#start-date")?.value,
+    workTime: this.querySelector("#work-hours")?.value,
+    requiredWorkers: Number(this.querySelector("#num-employees")?.value),
+
+    // schema-д тааруулж rename хийв
+    otherRequirements: this.querySelector("#requirements")?.value,
+    food: this.querySelector("#meal")?.checked
+      ? this.querySelector("#meal-details input")?.value
+      : "Байхгүй",
+    transport: this.querySelector("#transport")?.checked
+      ? this.querySelector("#transport-details input")?.value
+      : "Байхгүй",
+    note: this.querySelector("#additional-notes")?.value,
+  };
+
+  try {
+    const res = await fetch("/api/jobs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) throw new Error("Алдаа гарлаа");
+
+    alert("Зар амжилттай нэмэгдлээ");
+    window.location.hash = "#zar";
+
+  } catch (err) {
+    console.error(err);
+    alert("Зар нэмэхэд алдаа гарлаа");
   }
+}
+
   
   customElements.define("job-form", JobForm);

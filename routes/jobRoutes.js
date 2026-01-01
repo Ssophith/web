@@ -23,4 +23,63 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// 3. ШИНЭ ЗАР НЭМЭХ (POST /api/jobs)
+router.post("/", async (req, res) => {
+  try {
+    const {
+      title,
+      salary,
+      JobCategory,
+      jobType,
+      location,
+      workDate,
+      workTime,
+      requiredWorkers,
+      age,
+      gender,
+      experience,
+      clothes,
+      otherRequirements,
+      food,
+      transport,
+      note,
+      userId
+    } = req.body;
+
+    if (!title || !salary || !jobType || !location) {
+      return res.status(400).json({ message: "Заавал бөглөх талбарууд дутуу" });
+    }
+
+    const newJob = new Job({
+      userId,
+      title,
+      salary,
+      JobCategory,
+      jobType,
+      location,
+      workDate,
+      workTime,
+      requiredWorkers,
+      hiredWorkers: 0,
+      age,
+      gender,
+      experience,
+      clothes,
+      otherRequirements,
+      food,
+      transport,
+      note
+    });
+
+    const savedJob = await newJob.save();
+
+    res.status(201).json({
+      message: "Зар амжилттай нэмэгдлээ",
+      job: savedJob
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;
