@@ -10,23 +10,19 @@
       import "./component/Footer.js";
 
       import "./pages/ZarHarah.js";
+      import "./component/Login.js";
       // import "./pages/miniiZar.html";
       // import "./pages/miniiAjil.html";
       // import "./pages/profile.html";
       import { PageRouter } from "./router.js";
 
   function updateActiveLink() {
-    const hash = location.hash || '#home';
+  const hash = location.hash.substring(1) || 'home'; // #login → login
 
-    document.querySelectorAll('.top-menu a').forEach(a => {
-      const href = a.getAttribute('href');
-      a.classList.toggle('is-active', href === hash);
-    });
-
-    if (!location.hash) {
-      history.replaceState(null, '', '#home');
-    }
-  }
+  document.querySelectorAll('router > section').forEach(section => {
+    section.hidden = section.dataset.route !== hash;
+  });
+}
 
   window.addEventListener('hashchange', updateActiveLink);
   document.addEventListener('DOMContentLoaded', updateActiveLink);

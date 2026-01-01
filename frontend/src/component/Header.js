@@ -1,6 +1,6 @@
 export class HeaderComponent extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
+    this.innerHTML = /*html*/`
       <style>
       .header {
         height: 100%;
@@ -149,7 +149,7 @@ export class HeaderComponent extends HTMLElement {
           </a>
         </div>
         <div>
-          <a href="./login.html" class="button">
+          <a href="#login" class="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

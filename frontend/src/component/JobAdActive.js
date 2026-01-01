@@ -6,9 +6,9 @@ export class JobAdActive extends HTMLElement {
         this.title = this.getAttribute("title") || '';
         this.position = this.getAttribute("position") || '';
         this.salary = this.getAttribute("salary") || '';
-        this.count = this.getAttribute("count") || '';
-        this.allcnt = this.getAttribute("allcnt") || '';
-        this.nowcnt = this.getAttribute("nowcnt") || '';
+        this.count = this.getAttribute("count") || 0;
+        this.allcnt = this.getAttribute("allcnt") || 0;
+        this.nowcnt = this.getAttribute("nowcnt") || 0;
         this.innerHTML=/*html*/`
         <style>
             .buttons {
@@ -84,6 +84,10 @@ export class JobAdActive extends HTMLElement {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+
+            .badge.hide{
+                display: none;
             }
 
             .badge-people{
@@ -271,6 +275,9 @@ export class JobAdActive extends HTMLElement {
             </div>
         </article>
         `
+        
+        const badge = this.querySelector(".badge");
+        badge.classList.toggle("hide", this.count === 0);
     }
 }
 
