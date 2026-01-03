@@ -332,6 +332,7 @@ async handleSubmit() {
     alert("Зар нэмэхэд алдаа гарлаа");
   }
 }
+}
 
   
   customElements.define("job-form", JobForm);

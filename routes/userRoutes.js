@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -35,7 +36,27 @@ router.post("/login", async (req, res) => {
   const user = await User.findOne({ phone, password });
   if (!user) return res.status(401).json({ error: "Нууц үг эсвэл контакт буруу байна" });
 
-  res.json({ message: "Амжилттай нэвтэрлээ", user });
+  // 🔐 TOKEN ҮҮСГЭХ
+  const token = jwt.sign(
+    {
+      id: user._id,
+      phone: user.phone,
+      type: user.type
+    },
+    process.env.JWT_SECRET || "secret123",
+    { expiresIn: "1d" }
+  );
+
+  res.json({
+    message: "Амжилттай нэвтэрлээ",
+    token, // 👈 frontend хадгална
+    user: {
+      id: user._id,
+      name: user.name,
+      phone: user.phone,
+      type: user.type
+    }
+  });
 });
 
 // GET /api/users/:id - Нэг хэрэглэгчийн мэдээлэл авах

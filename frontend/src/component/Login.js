@@ -1,6 +1,6 @@
 export class LoginPage extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
+    this.innerHTML = /*html*/ `
     <style>
         /* Login card */
         .login-card {
@@ -12,7 +12,7 @@ export class LoginPage extends HTMLElement {
         font-family: 'Arial', sans-serif;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 1rem;
         }
 
         .login-card h2 {
@@ -83,75 +83,86 @@ export class LoginPage extends HTMLElement {
     </div>
     `;
 
-    const toggleBtn = this.querySelector('#toggleBtn');
-    const title = this.querySelector('#title');
-    const registerFields = this.querySelector('#registerFields');
-    const form = this.querySelector('#authForm');
-    const button = form.querySelector('button');
+    const toggleBtn = this.querySelector("#toggleBtn");
+    const title = this.querySelector("#title");
+    const registerFields = this.querySelector("#registerFields");
+    const form = this.querySelector("#authForm");
+    const button = form.querySelector("button");
     let isLogin = true;
 
     // Toggle login/register
-    toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener("click", () => {
       isLogin = !isLogin;
-      title.textContent = isLogin ? 'Нэвтрэх' : 'Бүртгүүлэх';
-      button.textContent = isLogin ? 'Нэвтрэх' : 'Бүртгүүлэх';
-      toggleBtn.textContent = isLogin ? 'Бүртгүүлэх' : 'Нэвтрэх';
-      registerFields.classList.toggle('hidden');
+      title.textContent = isLogin ? "Нэвтрэх" : "Бүртгүүлэх";
+      button.textContent = isLogin ? "Нэвтрэх" : "Бүртгүүлэх";
+      toggleBtn.textContent = isLogin ? "Бүртгүүлэх" : "Нэвтрэх";
+      registerFields.classList.toggle("hidden");
     });
 
-    // Submit event
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const data = {
-        name: this.querySelector('#name').value,
-        type: this.querySelector('#type').value,
-        phone: this.querySelector('#phone').value,
-        password: this.querySelector('#password').value
-      };
+
+      const name = this.querySelector("#name").value.trim();
+      const type = this.querySelector("#type").value;
+      const phone = this.querySelector("#phone").value.trim();
+      const password = this.querySelector("#password").value.trim();
+
+      if (!phone || !password || (!isLogin && !name)) {
+        alert("Бүх шаардлагатай талбарыг бөглөх ёстой.");
+        return;
+      }
+
+      const data = { name, type, phone, password };
 
       try {
         if (isLogin) {
-          const res = await fetch('/api/users/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone: data.phone, password: data.password })
-          });
+        const res = await fetch("/api/users/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ phone, password }),
+        });
 
-          const result = await res.json();
-          if (res.ok) {
-            alert('Амжилттай нэвтэрлээ!');
-            console.log('User info:', result);
-          } else {
-            alert('Нэвтрэхэд алдаа гарлаа: ' + result.message);
-          }
+        const result = await res.json();
 
+        if (res.ok) {
+            // 🔐 TOKEN ХАДГАЛАХ — ЯГ ЭНД
+            localStorage.setItem("token", result.token);
+            localStorage.setItem("user", JSON.stringify(result.user));
+
+            // шалгах
+            console.log("TOKEN:", localStorage.getItem("token"));
+
+            window.location.href = "../index.html";
         } else {
-          const res = await fetch('/api/users/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            alert("Нэвтрэхэд алдаа гарлаа: " + result.message);
+        }
+        } else {
+          const res = await fetch("/api/users/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
           });
-
           const result = await res.json();
           if (res.ok) {
-            alert('Амжилттай бүртгүүллээ!');
+            alert("Амжилттай бүртгүүллээ!");
+            // Login рүү буцаах
             isLogin = true;
-            title.textContent = 'Нэвтрэх';
-            button.textContent = 'Нэвтрэх';
-            toggleBtn.textContent = 'Бүртгүүлэх';
-            registerFields.classList.add('hidden');
+            title.textContent = "Нэвтрэх";
+            button.textContent = "Нэвтрэх";
+            toggleBtn.textContent = "Бүртгүүлэх";
+            registerFields.classList.add("hidden");
             form.reset();
           } else {
-            alert('Бүртгүүлэхэд алдаа гарлаа: ' + result.message);
+            alert("Бүртгүүлэхэд алдаа гарлаа: " + result.message);
           }
         }
       } catch (err) {
         console.error(err);
-        alert('Сервертэй холбогдож чадсангүй.');
+        alert("Сервертэй холбогдож чадсангүй.");
       }
     });
   }
 }
 
 // Custom element define
-customElements.define('login-page', LoginPage);
+customElements.define("login-page", LoginPage);
