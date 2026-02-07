@@ -334,5 +334,6 @@ async handleSubmit() {
 }
 }
 
-  
+
+// Custom element define
   customElements.define("job-form", JobForm);
