@@ -1,11 +1,3 @@
-import "./component/Header.js";
-import "./component/Footer.js";
-import "./pages/ZarHarah.js";
-// import "../pages/miniiZar.html";
-// import "../pages/miniiAjil.html";
-// import "../pages/profile.html";
-// import ".../pages/login.html";
-
 export class PageRouter extends HTMLElement {
   connectedCallback() {
     this._views = Array.from(this.querySelectorAll("[data-route]"));

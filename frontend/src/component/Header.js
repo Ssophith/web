@@ -78,7 +78,7 @@ export class HeaderComponent extends HTMLElement {
               <p>Зар</p>
             </div>
           </a>
-          <a href="#miniiZar">
+          <a href="#zar">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ export class HeaderComponent extends HTMLElement {
               <p>Миний зар</p>
             </div>
           </a>
-          <a href="#miniiAjil">
+          <a href="#job">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

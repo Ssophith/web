@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
@@ -23,7 +24,9 @@ router.post('/register', async (req, res) => {
     return res.status(400).json({ message: "Энэ дугаар аль хэдийн бүртгэгдсэн байна" });
   }
 
-  const user = new User({ name, phone, password, type });
+  // Password-ийг hash хийх
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = new User({ name, phone, password: hashedPassword, type });
   await user.save();
   res.status(201).json({ message: "Амжилттай бүртгүүллээ!" });
 });
@@ -33,8 +36,25 @@ router.post("/login", async (req, res) => {
   const { phone, password } = req.body;
   if (!phone || !password) return res.status(400).json({ error: "Phone болон password шаардлагатай" });
 
-  const user = await User.findOne({ phone, password });
+  const user = await User.findOne({ phone });
   if (!user) return res.status(401).json({ error: "Нууц үг эсвэл контакт буруу байна" });
+
+  // Password-ийг шалгах - hash хийгдсэн эсвэл шууд байж болно
+  let isMatch = false;
+  try {
+    if (user.password && user.password.startsWith("$2")) {
+      // bcrypt hash (эхлэлд $2 байна)
+      isMatch = await bcrypt.compare(password, user.password);
+    } else {
+      // Шууд password (хуучин бүртгэл - hash хийгдээгүй)
+      isMatch = user.password === password;
+    }
+  } catch (err) {
+    console.error("Password шалгахад алдаа:", err);
+    return res.status(500).json({ error: "Сервер дээр алдаа гарлаа" });
+  }
+
+  if (!isMatch) return res.status(401).json({ error: "Нууц үг эсвэл контакт буруу байна" });
 
   // 🔐 TOKEN ҮҮСГЭХ
   const token = jwt.sign(

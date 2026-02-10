@@ -122,43 +122,56 @@ export class LoginPage extends HTMLElement {
             body: JSON.stringify({ phone, password }),
         });
 
+        // Response-ийг уншихын өмнө status шалгах
+        if (!res.ok) {
+          const errorData = await res.json();
+          const errorMessage = errorData.error || errorData.message || "Нэвтрэхэд алдаа гарлаа";
+          alert(errorMessage);
+          return;
+        }
+
         const result = await res.json();
 
-        if (res.ok) {
-            // 🔐 TOKEN ХАДГАЛАХ — ЯГ ЭНД
-            localStorage.setItem("token", result.token);
-            localStorage.setItem("user", JSON.stringify(result.user));
-
-            // шалгах
-            console.log("TOKEN:", localStorage.getItem("token"));
-
-            window.location.href = "../index.html";
-        } else {
-            alert("Нэвтрэхэд алдаа гарлаа: " + result.message);
+        // 🔐 TOKEN ХАДГАЛАХ — ЯГ ЭНД
+        if (result.token) {
+          localStorage.setItem("token", result.token);
         }
+        localStorage.setItem("user", JSON.stringify(result.user));
+
+        // шалгах
+        console.log("TOKEN:", localStorage.getItem("token"));
+        console.log("USER:", localStorage.getItem("user"));
+
+        // Hash-based routing ашиглах
+        window.location.hash = "#home";
         } else {
           const res = await fetch("/api/users/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
           });
-          const result = await res.json();
-          if (res.ok) {
-            alert("Амжилттай бүртгүүллээ!");
-            // Login рүү буцаах
-            isLogin = true;
-            title.textContent = "Нэвтрэх";
-            button.textContent = "Нэвтрэх";
-            toggleBtn.textContent = "Бүртгүүлэх";
-            registerFields.classList.add("hidden");
-            form.reset();
-          } else {
-            alert("Бүртгүүлэхэд алдаа гарлаа: " + result.message);
+
+          if (!res.ok) {
+            const errorData = await res.json();
+            const errorMessage = errorData.message || errorData.error || "Бүртгүүлэхэд алдаа гарлаа";
+            alert(errorMessage);
+            return;
           }
+
+          const result = await res.json();
+          alert(result.message || "Амжилттай бүртгүүллээ!");
+          
+          // Login рүү буцаах
+          isLogin = true;
+          title.textContent = "Нэвтрэх";
+          button.textContent = "Нэвтрэх";
+          toggleBtn.textContent = "Бүртгүүлэх";
+          registerFields.classList.add("hidden");
+          form.reset();
         }
       } catch (err) {
-        console.error(err);
-        alert("Сервертэй холбогдож чадсангүй.");
+        console.error("Login/Register алдаа:", err);
+        alert(`Сервертэй холбогдож чадсангүй: ${err.message || "Тодорхойгүй алдаа"}`);
       }
     });
   }

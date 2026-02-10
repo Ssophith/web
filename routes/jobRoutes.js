@@ -2,10 +2,17 @@ import express from "express";
 import Job from "../models/Job.js"; // Job schema
 const router = express.Router();
 
-// 1. Бүх ажлын мэдээлэл авах
+// 1. Бүх ажлын мэдээлэл авах (эсвэл userId-аар шүүх)
 router.get("/", async (req, res) => {
   try {
-    const jobs = await Job.find().populate("userId"); // userId-ийг автоматаар авах
+    const { userId } = req.query;
+    
+    let query = {};
+    if (userId) {
+      query.userId = userId;
+    }
+    
+    const jobs = await Job.find(query).populate("userId"); // userId-ийг автоматаар авах
     res.json(jobs);
   } catch (err) {
     res.status(500).json({ message: err.message });
